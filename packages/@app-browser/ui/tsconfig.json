@@ -1,0 +1,12 @@
+{
+    "extends": "@andrao/tsconfig/base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@ui/*": ["./src/*"]
+        },
+        "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+    },
+    "include": ["src", "tailwind.config.ts"],
+    "exclude": ["node_modules"]
+}

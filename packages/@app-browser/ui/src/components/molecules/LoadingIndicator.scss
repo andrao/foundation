@@ -1,0 +1,75 @@
+// CircularLoadingIndicator
+.CircularLoadingIndicator {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: circular-loading-indicator 1.5s linear infinite;
+
+    .dark & {
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        border-bottom-color: transparent;
+    }
+}
+
+@keyframes circular-loading-indicator {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// WaveLoadingIndicator
+.WaveLoadingIndicator {
+    display: flex;
+    align-items: center;
+    height: 18px;
+
+    .obj {
+        width: 6px;
+        height: 0px;
+        // background: #17a2b8;
+        margin: 0 3px;
+        border-radius: 10px;
+        animation: wave-loading-indicator 1.2s infinite;
+    }
+
+    .obj:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+    .obj:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .obj:nth-child(4) {
+        animation-delay: 0.45s;
+    }
+    .obj:nth-child(5) {
+        animation-delay: 0.6s;
+    }
+    .obj:nth-child(6) {
+        animation-delay: 0.75s;
+    }
+    .obj:nth-child(7) {
+        animation-delay: 0.9s;
+    }
+    .obj:nth-child(8) {
+        animation-delay: 1.05s;
+    }
+}
+
+@keyframes wave-loading-indicator {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 100%;
+    }
+    100% {
+        height: 0;
+    }
+}

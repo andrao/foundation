@@ -1,0 +1,38 @@
+{
+    "name": "@acme/db",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "scripts": {
+        "clean": "rm -rf .turbo node_modules",
+        "format": "prettier --check . --ignore-path ../../../.prettierignore",
+        "jest": "pnpm with-env pnpm run -C ../../.. jest",
+        "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
+        "lint": "eslint .",
+        "migrate:apply": "pnpm run migrate:plan && pnpm with-env tsx ./src/migrate.ts",
+        "migrate:create": "pnpm with-env drizzle-kit generate:pg --custom",
+        "migrate:plan": "pnpm with-env drizzle-kit generate:pg",
+        "push": "pnpm with-env drizzle-kit push:pg",
+        "studio": "pnpm with-env drizzle-kit studio",
+        "test": "pnpm run jest $PWD",
+        "test:i": "pnpm run jest:i $PWD",
+        "typecheck": "tsc --noEmit",
+        "with-env": "dotenv -e ../../../.env --"
+    },
+    "dependencies": {
+        "@andrao/tools": "^1.0.0",
+        "@neondatabase/serverless": "^0.9.4",
+        "drizzle-orm": "^0.32.2",
+        "drizzle-zod": "^0.5.1",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "dotenv-cli": "^7.4.2",
+        "drizzle-kit": "^0.23.2",
+        "pg": "^8.12.0",
+        "tsx": "^4.16.5"
+    }
+}

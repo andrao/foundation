@@ -1,0 +1,64 @@
+{
+    "version": "0.2.1",
+    "configurations": [
+        {
+            "type": "node",
+            "runtimeVersion": "20.10.0",
+            "name": "Watch tests in package",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceRoot}/${relativeFileDirname}",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": ["run", "test:watch"]
+        },
+        {
+            "type": "node",
+            "runtimeVersion": "20.10.0",
+            "name": "Run tests in package",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceRoot}/${relativeFileDirname}",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": ["run", "test"]
+        },
+        {
+            "type": "node",
+            "runtimeVersion": "20.10.0",
+            "name": "Watch open test file",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "run",
+                "jest",
+                "${relativeFileDirname}${pathSeparator}${fileBasenameNoExtension}",
+                "--watch"
+            ]
+        },
+        {
+            "type": "node",
+            "runtimeVersion": "20.10.0",
+            "name": "Run open test file",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "run",
+                "jest",
+                "${relativeFileDirname}${pathSeparator}${fileBasenameNoExtension}"
+            ]
+        },
+        {
+            "type": "node",
+            "runtimeVersion": "20.10.0",
+            "name": "pnpm install",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": ["install"]
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "name": "@acme/express",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "clean": "git clean -xdf .next .turbo node_modules",
+        "dev": "pnpm with-env tsx ./src/index.ts",
+        "format": "prettier --check . --ignore-path ../../.prettierignore",
+        "jest": "pnpm run -C ../.. jest",
+        "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
+        "lint": "eslint .",
+        "test": "pnpm run jest $PWD",
+        "test:i": "pnpm run jest:i $PWD",
+        "typecheck": "tsc --noEmit",
+        "with-env": "dotenv -e ../../.env --"
+    },
+    "dependencies": {
+        "@acme/constants": "workspace:*",
+        "@acme/paths": "workspace:*",
+        "@andrao/tools": "^1.0.0",
+        "@t3-oss/env-nextjs": "^0.9.2",
+        "express": "^4.19.2",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "tsx": "^4.16.5"
+    }
+}

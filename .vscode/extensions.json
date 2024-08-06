@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "bierner.github-markdown-preview",
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "expo.vscode-expo-tools",
+        "pulumi.pulumi-lsp-client",
+        "streetsidesoftware.code-spell-checker",
+        "timonwong.shellcheck",
+        "yoavbls.pretty-ts-errors"
+    ]
+}
