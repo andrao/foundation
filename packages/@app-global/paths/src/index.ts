@@ -7,4 +7,7 @@ export const PATHS = {
     api: {
         trpc: '/api/trpc' as const,
     },
+    onelocal: {
+        SCHEDULE_WEBHOOK: '/schedule' as const,
+    },
 };
