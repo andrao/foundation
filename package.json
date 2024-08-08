@@ -20,7 +20,8 @@
         "new": "turbo gen init",
         "prepare": "husky",
         "test": "turbo test --output-logs errors-only",
-        "test:ci": "RUN_JEST_INTEGRATION_TESTS=1 turbo test --output-logs errors-only --continue -- --ci --runInBand",
+        "test:ci": "turbo test:i --output-logs errors-only --continue -- --ci --runInBand",
+        "test:i": "turbo test:i --output-logs errors-only",
         "turbo:reset": "turbo daemon clean",
         "typecheck": "turbo typecheck --output-logs errors-only",
         "welcome": "./tooling/welcome.sh"
