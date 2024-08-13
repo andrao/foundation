@@ -1,5 +1,4 @@
-import config from '@andrao/tailwind';
-import type { Config } from 'tailwindcss';
+import config, { type Config } from '@andrao/tailwind';
 
 export default {
     content: [...config.content],

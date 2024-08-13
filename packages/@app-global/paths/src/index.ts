@@ -7,4 +7,4 @@ export const PATHS = {
     api: {
         trpc: '/api/trpc' as const,
     },
-};
+} satisfies Record<string, string | Record<string, string>>;
