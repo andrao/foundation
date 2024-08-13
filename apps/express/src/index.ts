@@ -1,3 +1,4 @@
+import { PATHS } from '@acme/paths';
 import express from 'express';
 import { env } from './env';
 
@@ -5,18 +6,18 @@ import { env } from './env';
  * @const app
  * @description Initialized express app
  */
-const app = express();
+export const app = express();
 
 /**
  * @path /
  */
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.get(PATHS.home, (req, res) => {
+    res.send('Hello world!');
 });
 
 /**
  * Start server & listen on port
  */
-app.listen(env.PORT, () => {
+export const server = app.listen(env.PORT, () => {
     console.log(`Server is running on port ${env.PORT}`);
 });
