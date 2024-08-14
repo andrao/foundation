@@ -4,6 +4,7 @@
         "sharedGlobals": ["{workspaceRoot}/.env"],
         "default": ["{projectRoot}/**/*", "sharedGlobals"]
     },
+    "parallel": 10,
     "targetDefaults": {
         "topo": {
             "dependsOn": ["^topo"]
@@ -25,11 +26,21 @@
         },
         "format": {
             "cache": true,
-            "outputs": ["{workspaceRoot}/node_modules/.cache/.prettiercache"]
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.prettiercache"],
+            "options": {
+                "log-level": "warn",
+                "cache": true,
+                "cache-location": "node_modules/.cache/.prettiercache"
+            }
         },
         "format:top": {
             "cache": true,
-            "outputs": ["{workspaceRoot}/node_modules/.cache/.prettiercache"]
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.prettiercache"],
+            "options": {
+                "log-level": "warn",
+                "cache": true,
+                "cache-location": "node_modules/.cache/.prettiercache"
+            }
         },
         "format:top:fix": {
             "cache": true,
@@ -38,7 +49,11 @@
         "lint": {
             "cache": true,
             "dependsOn": ["^topo"],
-            "outputs": ["{workspaceRoot}/node_modules/.cache/.eslintcache"]
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.eslintcache"],
+            "options": {
+                "--cache": true,
+                "cache-location": "node_modules/.cache/.eslintcache"
+            }
         },
         "test": {
             "cache": true,
