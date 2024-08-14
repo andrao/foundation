@@ -1,0 +1,51 @@
+{
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "namedInputs": {
+        "sharedGlobals": ["{workspaceRoot}/.env"],
+        "default": ["{projectRoot}/**/*", "sharedGlobals"]
+    },
+    "targetDefaults": {
+        "topo": {
+            "dependsOn": ["^topo"]
+        },
+        "build": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "outputs": [
+                "{workspaceRoot}/.next/**",
+                "!{workspaceRoot}/.next/cache/**",
+                "{workspaceRoot}/next-env.d.ts",
+                "{workspaceRoot}/.expo/**",
+                "{workspaceRoot}/.output/**",
+                "{workspaceRoot}/.vercel/output/**"
+            ]
+        },
+        "clean": {
+            "cache": false
+        },
+        "format": {
+            "cache": true,
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.prettiercache"]
+        },
+        "lint": {
+            "cache": true,
+            "dependsOn": ["^topo"],
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.eslintcache"]
+        },
+        "test": {
+            "cache": true,
+            "dependsOn": ["^topo"],
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.jestcache"]
+        },
+        "test:i": {
+            "cache": true,
+            "dependsOn": ["^topo"],
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.jestcache"]
+        },
+        "typecheck": {
+            "cache": true,
+            "dependsOn": ["^topo"],
+            "outputs": ["{workspaceRoot}/node_modules/.cache/tsbuildinfo.json"]
+        }
+    }
+}
