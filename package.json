@@ -8,8 +8,10 @@
         "db:push": "pnpm -F db push",
         "db:studio": "pnpm -F db studio",
         "dev": "nx run-many -t dev --parallel 100",
-        "format": "nx run-many -t format -- --log-level warn --cache --cache-location node_modules/.cache/.prettiercache",
-        "format:fix": "nx run-many -t format -- --write --log-level warn --cache --cache-location node_modules/.cache/.prettiercache",
+        "format": "nx run-many -t format --exclude foundation -- --log-level warn --cache --cache-location node_modules/.cache/.prettiercache && nx run-many -t format:top",
+        "format:fix": "nx run-many -t format --exclude foundation -- --write --log-level warn --cache --cache-location node_modules/.cache/.prettiercache && nx run-many -t format:top:fix",
+        "format:top": "prettier --check jest.config.js nx.json package.json pnpm-workspace.yaml tsconfig.json --ignore-path .prettierignore --cache --cache-location node_modules/.cache/.prettiercache",
+        "format:top:fix": "pnpm format:top --write",
         "postinstall": "pnpm lint:ws",
         "install:clean": "pnpm run clean:workspaces && pnpm install",
         "jest": "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js",
@@ -58,5 +60,6 @@
     "packageManager": "pnpm@9.6.0",
     "engines": {
         "node": ">=20.10"
-    }
+    },
+    "nx": {}
 }
