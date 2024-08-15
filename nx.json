@@ -25,12 +25,21 @@
         },
         "format": {
             "cache": true,
-            "outputs": ["{workspaceRoot}/node_modules/.cache/.prettiercache"]
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.prettiercache"],
+            "options": {
+                "cache": true,
+                "cache-location": "node_modules/.cache/.prettiercache",
+                "log-level": "warn"
+            }
         },
         "lint": {
             "cache": true,
             "dependsOn": ["^topo"],
-            "outputs": ["{workspaceRoot}/node_modules/.cache/.eslintcache"]
+            "outputs": ["{workspaceRoot}/node_modules/.cache/.eslintcache"],
+            "options": {
+                "cache": true,
+                "cache-location": "node_modules/.cache/.eslintcache"
+            }
         },
         "test": {
             "cache": true,
@@ -47,5 +56,6 @@
             "dependsOn": ["^topo"],
             "outputs": ["{workspaceRoot}/node_modules/.cache/tsbuildinfo.json"]
         }
-    }
+    },
+    "nxCloudAccessToken": "YmIyMjZlZjAtZjA4Ni00MDdjLWE1MzYtZDlkOGZlNzdkYjU0fHJlYWQtd3JpdGU="
 }
