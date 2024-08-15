@@ -1,3 +1,4 @@
+import { PORTS } from '@acme/paths/ports.js';
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
@@ -20,7 +21,7 @@ export const env = createEnv({
      */
     shared: {
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-        PORT: z.coerce.number().default(3000),
+        PORT: z.coerce.number().default(PORTS.nextjs),
         VERCEL_ENV: z.enum(['development', 'preview', 'production']).default('development'),
         VERCEL_URL: z.string().optional(),
     },
