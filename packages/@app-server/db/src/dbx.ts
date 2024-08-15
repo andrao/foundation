@@ -21,14 +21,6 @@ const MAX_RETRY_ATTEMPTS = 3;
  * @description Run a database command via the default connection, with retry
  */
 export async function dbx<T>(cb: (arg: INeonServerlessClient) => Promise<T>): Promise<T> {
-    return await dbxNeon(cb);
-}
-
-/**
- * @function dbxNeon
- * @description Run a database command via the Neon DB connection, with retry
- */
-export async function dbxNeon<T>(cb: (arg: INeonServerlessClient) => Promise<T>): Promise<T> {
     return await retry(() => cb(getNeonServerlessClient()), {
         max_attempts: MAX_RETRY_ATTEMPTS,
         src: 'dbxNeon',
