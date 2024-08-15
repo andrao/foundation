@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "clean": "git clean -xdf .next .turbo node_modules",
-        "dev": "pnpm with-env tsx ./src/index.ts",
+        "dev": "pnpm with-env tsx watch --clear-screen=false ./src/index.ts",
         "format": "prettier --check . --ignore-path ../../.prettierignore",
         "jest": "pnpm run -C ../.. jest",
         "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",

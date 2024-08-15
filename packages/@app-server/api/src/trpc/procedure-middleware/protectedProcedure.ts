@@ -1,3 +1,4 @@
+import { TRPCError } from '@trpc/server';
 import { t } from '../instance';
 import type { ExtractContext } from './types';
 
@@ -12,7 +13,8 @@ export type IProtectedProcedureContext = ExtractContext<typeof baseProtectedProc
  * @description User must be logged in to access this procedure
  */
 const baseProtectedProcedure = t.procedure.use(({ ctx, next }) => {
-    console.warn(`not authenticating on protected procedure`);
+    /** @tmp @todo */
+    if (!ctx.headers[`x-auth`]) throw new TRPCError({ code: 'UNAUTHORIZED' });
 
     return next({
         ctx: {

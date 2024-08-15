@@ -4,7 +4,8 @@
     "private": true,
     "type": "module",
     "exports": {
-        ".": "./src/index.ts"
+        ".": "./src/index.ts",
+        "./ports.js": "./src/ports.js"
     },
     "scripts": {
         "clean": "rm -rf .turbo node_modules",

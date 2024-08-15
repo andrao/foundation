@@ -1,5 +1,6 @@
 import { createTRPCRouter } from '../trpc/procedure-middleware';
 import { BASIC_ROUTER } from './basic';
+import { PROJECT_ROUTER } from './project';
 
 /**
  * @const APP_ROUTER
@@ -7,6 +8,7 @@ import { BASIC_ROUTER } from './basic';
  */
 export const APP_ROUTER = createTRPCRouter({
     basic: BASIC_ROUTER,
+    project: PROJECT_ROUTER,
 });
 
 /**

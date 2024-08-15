@@ -1,3 +1,4 @@
+import { PORTS } from '@acme/paths';
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
@@ -24,7 +25,7 @@ export const env = createEnv({
      */
     shared: {
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-        PORT: z.coerce.number().default(3001),
+        PORT: z.coerce.number().default(PORTS.express),
     },
 
     /**

@@ -7,10 +7,17 @@ import { protectedProcedure } from '../../trpc/procedure-middleware';
  * @description Return a message to an authenticated user
  */
 export const getProtectedMessage = protectedProcedure()
+    .input(
+        z
+            .object({
+                n: z.number().optional(),
+            })
+            .optional(),
+    )
     .output(z.string())
-    .mutation(({ input, ctx }) => {
-        const name = ctx.headers['x-name'];
-        if (!name) throw new TRPCError({ code: 'UNAUTHORIZED' });
+    .query(({ input, ctx }) => {
+        if (input?.n && input.n >= 10)
+            throw new TRPCError({ code: 'TOO_MANY_REQUESTS', message: `That's enough!` });
 
-        return `Hello ${name}, this is the protected message.`;
+        return `Welcome, this is the protected message – n=${input?.n ?? 0}`;
     });

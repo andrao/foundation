@@ -16,6 +16,7 @@ export type INeonServerlessClient = NeonHttpDatabase<typeof schema>;
 
 /**
  * @var NEON_CLIENT
+ * @description Lazy-init Neon client
  */
 let NEON_CLIENT: INeonServerlessClient | null = null;
 

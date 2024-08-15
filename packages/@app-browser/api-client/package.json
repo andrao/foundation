@@ -1,12 +1,12 @@
 {
-    "name": "@acme/api",
+    "name": "@acme/api-client",
     "version": "0.1.0",
     "private": true,
     "type": "module",
     "exports": {
-        ".": "./src/index.ts",
-        "./transformer": "./transformer.ts"
+        ".": "./src/index.tsx"
     },
+    "main": "./src/index.tsx",
     "scripts": {
         "clean": "rm -rf .turbo node_modules",
         "format": "prettier --check . --ignore-path ../../../.prettierignore",
@@ -18,17 +18,14 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@acme/constants": "workspace:*",
-        "@acme/db": "workspace:*",
-        "@acme/db-api": "workspace:*",
-        "@andrao/async": "^1.0.0",
+        "@acme/api": "workspace:*",
+        "@acme/paths": "workspace:*",
         "@andrao/tools": "^1.0.0",
+        "@tanstack/react-query": "^5.51.23",
         "@trpc/client": "next",
+        "@trpc/react-query": "next",
         "@trpc/server": "next",
-        "superjson": "2.2.1",
-        "zod": "^3.23.8"
-    },
-    "devDependencies": {
-        "next": "^14.2.5"
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
     }
 }

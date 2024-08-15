@@ -1,3 +1,4 @@
+import { dbx, type IDBX } from '@acme/db';
 import type { NextApiRequest } from 'next';
 import type { NextRequest } from 'next/server';
 
@@ -8,8 +9,9 @@ const SOURCE_HEADER = `x-trpc-source`;
  * @description tRPC context
  */
 export interface ITRPCContext {
+    dbx: IDBX;
     env: IAPIEnvVars;
-    headers: Record<string, string>;
+    headers: Record<string, string | Array<string> | undefined>;
 }
 
 /**
@@ -17,10 +19,7 @@ export interface ITRPCContext {
  * @description Environment variables required for API procedures
  */
 interface IAPIEnvVars {
-    ANTHROPIC_API_KEY: string;
-    OPENAI_API_KEY: string;
     PORT: number;
-    VERCEL_ENV: 'development' | 'preview' | 'production';
 }
 
 /**
@@ -37,7 +36,7 @@ export function createTRPCContextInner(
     // @tmp
     console.log('>>> incoming tRPC Request from', source);
 
-    return { ...ctx };
+    return { ...ctx, dbx };
 }
 
 /**
