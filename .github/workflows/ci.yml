@@ -22,6 +22,8 @@ jobs:
 
             - name: Audit
               run: pnpm audit
+            - name: License check
+              run: pnpm run -F license-check go
 
     format:
         needs: audit
