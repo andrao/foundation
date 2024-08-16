@@ -12,6 +12,7 @@
         "lint": "eslint .",
         "test": "pnpm run jest $PWD",
         "test:i": "pnpm run jest:i $PWD",
+        "test:step": "pnpm exec stepci run ./stepci.yml",
         "typecheck": "tsc --noEmit",
         "with-env": "dotenv -e ../../.env --"
     },

@@ -1,0 +1,33 @@
+version: '1.1'
+name: tRPC
+env:
+    PORT: 3002
+tests:
+    getProtectedMessage:
+        steps:
+            - name: authenticated
+              http:
+                  url: http://localhost:${{env.PORT}}/api/trpc
+                  headers:
+                      x-auth: Bearer 123
+                  trpc:
+                      query:
+                          basic/getProtectedMessage:
+                              json:
+                                  n: 3
+                  check:
+                      status: /^20/
+                      jsonpath:
+                          $.result.data.json: Welcome, this is the protected message – n=3
+            - name: unauthenticated
+              http:
+                  url: http://localhost:${{env.PORT}}/api/trpc
+                  trpc:
+                      query:
+                          basic/getProtectedMessage:
+                              json:
+                                  n: 3
+                  check:
+                      status: 401
+                      jsonpath:
+                          $.error.json.message: UNAUTHORIZED
