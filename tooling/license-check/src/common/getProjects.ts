@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import path from 'path';
 
-const ROOT_DIRECTORY = path.resolve(__dirname, '../../..');
+const ROOT_DIRECTORY = path.resolve(__dirname, '../../../..');
 const ROOT_DIRECTORY_REGEX = new RegExp(`${ROOT_DIRECTORY.replace(/\//g, '\\/')}\\/(.+?)\\s`);
 
 /**
