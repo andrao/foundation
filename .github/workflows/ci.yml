@@ -12,114 +12,49 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-    format:
+    audit:
         runs-on: ubuntu-latest
         steps:
             # --- Start setup --- #
-            # Checkout repo
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            # Install pnpm globally
-            - name: Install pnpm
-              uses: pnpm/action-setup@v3
-
-            # Install Node.js & establish pnpm cache
-            - name: Install Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: .nvmrc
-                  cache: pnpm
-
-            # Install repo dependencies
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
             # --- End setup --- #
 
-            # Run
+            - name: Audit
+              run: pnpm audit
+
+    format:
+        needs: audit
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
             - name: Format
               run: pnpm format
 
     lint:
+        needs: audit
         runs-on: ubuntu-latest
         steps:
-            # --- Start setup --- #
-            # Checkout repo
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            # Install pnpm globally
-            - name: Install pnpm
-              uses: pnpm/action-setup@v3
-
-            # Install Node.js & establish pnpm cache
-            - name: Install Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: .nvmrc
-                  cache: pnpm
-
-            # Install repo dependencies
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
-            # --- End setup --- #
-
-            # Run
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
             - name: Lint
               run: pnpm lint
 
     test:
+        needs: audit
         runs-on: ubuntu-latest
         steps:
-            # --- Start setup --- #
-            # Checkout repo
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            # Install pnpm globally
-            - name: Install pnpm
-              uses: pnpm/action-setup@v3
-
-            # Install Node.js & establish pnpm cache
-            - name: Install Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: .nvmrc
-                  cache: pnpm
-
-            # Install repo dependencies
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
-            # --- End setup --- #
-
-            # Run tests
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
             - name: Test
               run: pnpm test:ci
 
     typecheck:
+        needs: audit
         runs-on: ubuntu-latest
         steps:
-            # --- Start setup --- #
-            # Checkout repo
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            # Install pnpm globally
-            - name: Install pnpm
-              uses: pnpm/action-setup@v3
-
-            # Install Node.js & establish pnpm cache
-            - name: Install Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: .nvmrc
-                  cache: pnpm
-
-            # Install repo dependencies
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
-            # --- End setup --- #
-
-            # Run
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
             - name: Typecheck
               run: pnpm typecheck
