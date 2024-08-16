@@ -1,0 +1,21 @@
+name: 'Install dependencies'
+description: 'Install PNPM & Node, install workspace dependencies'
+
+runs:
+    using: composite
+    steps:
+        # Install pnpm globally
+        - name: Install pnpm
+          uses: pnpm/action-setup@v3
+
+        # Install Node.js & establish pnpm cache
+        - name: Install Node.js
+          uses: actions/setup-node@v4
+          with:
+              node-version-file: .nvmrc
+              cache: pnpm
+
+        # Install repo dependencies
+        - name: Install dependencies
+          run: pnpm install --frozen-lockfile
+          shell: bash
