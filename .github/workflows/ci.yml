@@ -62,3 +62,20 @@ jobs:
             - uses: ./tooling/actions/install-dependencies
             - name: Typecheck
               run: pnpm typecheck
+
+    stepci--api-trpc:
+        needs:
+            - audit
+            - test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
+            - name: Start server
+              run: pnpm -F api-trpc dev & echo Starting
+            - name: Wait for server ready
+              run: pnpm exec wait-on tcp:3002
+            - name: StepCI workflow
+              uses: stepci/stepci@2.8.2
+              with:
+                  workflow: ./apps/api-trpc/stepci.yml
