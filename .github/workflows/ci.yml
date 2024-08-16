@@ -75,6 +75,7 @@ jobs:
               run: pnpm -F api-trpc dev & echo Starting
             - name: Wait for server ready
               run: pnpm exec wait-on tcp:3002
+              timeout-minutes: 0.2
             - name: StepCI workflow
               uses: stepci/stepci@2.8.2
               with:
