@@ -66,3 +66,7 @@ yarn-error.log*
 # python
 __pycache__
 venv
+
+# nx
+.nx/cache
+.nx/workspace-data
