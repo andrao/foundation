@@ -18,6 +18,8 @@ jobs:
             # --- Start setup --- #
             - uses: actions/checkout@v4
             - uses: ./tooling/actions/install-dependencies
+              with:
+                  ignore-scripts: true
             # --- End setup --- #
 
             - name: Audit
