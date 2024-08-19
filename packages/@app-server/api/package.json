@@ -21,14 +21,14 @@
         "@acme/constants": "workspace:*",
         "@acme/db": "workspace:*",
         "@acme/db-api": "workspace:*",
-        "@andrao/async": "^1.0.0",
-        "@andrao/tools": "^1.0.0",
+        "@andrao/async": "1.0.0",
+        "@andrao/tools": "1.1.0",
         "@trpc/client": "next",
         "@trpc/server": "next",
         "superjson": "2.2.1",
-        "zod": "^3.23.8"
+        "zod": "3.23.8"
     },
     "devDependencies": {
-        "next": "^14.2.5"
+        "next": "14.2.5"
     }
 }

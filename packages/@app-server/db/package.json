@@ -23,16 +23,16 @@
         "with-env": "dotenv -e ../../../.env --"
     },
     "dependencies": {
-        "@andrao/tools": "^1.0.0",
-        "@neondatabase/serverless": "^0.9.4",
-        "drizzle-orm": "^0.32.2",
-        "drizzle-zod": "^0.5.1",
-        "zod": "^3.23.8"
+        "@andrao/tools": "1.1.0",
+        "@neondatabase/serverless": "0.9.4",
+        "drizzle-orm": "0.32.2",
+        "drizzle-zod": "0.5.1",
+        "zod": "3.23.8"
     },
     "devDependencies": {
-        "dotenv-cli": "^7.4.2",
-        "drizzle-kit": "^0.23.2",
-        "pg": "^8.12.0",
-        "tsx": "^4.16.5"
+        "dotenv-cli": "7.4.2",
+        "drizzle-kit": "0.23.2",
+        "pg": "8.12.0",
+        "tsx": "4.16.5"
     }
 }
