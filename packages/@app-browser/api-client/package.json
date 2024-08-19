@@ -20,12 +20,12 @@
     "dependencies": {
         "@acme/api": "workspace:*",
         "@acme/paths": "workspace:*",
-        "@andrao/tools": "^1.0.0",
-        "@tanstack/react-query": "^5.51.23",
+        "@andrao/tools": "1.1.0",
+        "@tanstack/react-query": "5.51.23",
         "@trpc/client": "next",
         "@trpc/react-query": "next",
         "@trpc/server": "next",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1"
+        "react": "18.3.1",
+        "react-dom": "18.3.1"
     }
 }
