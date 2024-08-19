@@ -7,6 +7,9 @@
     "eslint.workingDirectories": [{ "mode": "auto" }],
     "editor.tabSize": 4,
     "files.autoSave": "onFocusChange",
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
