@@ -14,6 +14,9 @@ concurrency:
 jobs:
     audit:
         runs-on: ubuntu-latest
+        permissions:
+            issues: write
+            pull-requests: write
         steps:
             # --- Start setup --- #
             - uses: actions/checkout@v4
@@ -26,6 +29,31 @@ jobs:
               run: pnpm audit
             - name: License check
               run: pnpm run -F license-check go
+            - name: Determine outdated dependencies
+              id: outdated
+              run: |
+                  OUTDATED="$((pnpm -r outdated || true) | grep -vE 'ENOTFOUND')"
+                  echo "$OUTDATED"
+                  {
+                    echo 'deps<<EOF'
+                    echo "$OUTDATED"
+                    echo EOF
+                  } >> "$GITHUB_OUTPUT"
+
+            - name: Conditionally add outdated dependency comment
+              if: ${{ (github.event_name == 'pull_request' || (github.event_name == 'push' && github.event.pull_request)) && steps.outdated.outputs.deps != '' }}
+              uses: actions/github-script@v4
+              env:
+                  OUTDATED: ${{ steps.outdated.outputs.deps }}
+              with:
+                  script: |
+                      const { OUTDATED } = process.env;
+                      github.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number,
+                        body: `⚠️ This repo contains outdated dependencies. Please consider updating them in a separate PR.\n\n\`pnpm audit\` did not detect any known vulnerabilities.\n\`\`\`\n${OUTDATED}\n\`\`\`\n`,
+                      });
 
     format:
         needs: audit
