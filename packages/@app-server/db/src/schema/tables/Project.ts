@@ -1,4 +1,4 @@
-import { index, varchar } from 'drizzle-orm/pg-core';
+import { check, index, varchar } from 'drizzle-orm/pg-core';
 import { createTable } from '../common/createTable';
 
 /**
@@ -17,5 +17,7 @@ export const Project = createTable({
     extraConfig: table => ({
         project_org_idx: index('project_org_idx').on(table.org_id),
         project_user_idx: index('project_user_idx').on(table.user_id),
+
+        // dd: check('dd', `...`),
     }),
 });

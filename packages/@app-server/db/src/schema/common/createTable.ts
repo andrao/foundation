@@ -17,14 +17,14 @@ const nameTable = pgTableCreator(name => name);
  * @const DEFAULT_COLUMNS
  * @description Default columns for all tables
  */
-const DEFAULT_COLUMNS = {
-    created_at: timestamp('created_at')
-        .default(sql`CURRENT_TIMESTAMP`)
-        .notNull(),
+export const DEFAULT_COLUMNS = {
+    created_at: timestamp('created_at').defaultNow().notNull(),
+
     updated_at: timestamp('updated_at')
-        .default(sql`CURRENT_TIMESTAMP`)
         .defaultNow()
-        .notNull(),
+        .notNull()
+        .$onUpdate(() => sql`CURRENT_TIMESTAMP`),
+
     deleted_at: timestamp('deleted_at'),
 };
 
@@ -52,5 +52,15 @@ export function createTable<
     columns: BuildColumns<TableName, ColumnsMap & typeof DEFAULT_COLUMNS, 'pg'>;
     dialect: 'pg';
 }> {
-    return nameTable(name, { ...DEFAULT_COLUMNS, ...columns }, extraConfig);
+    return nameTable(name, appendDefaultColumns(columns), extraConfig);
+}
+
+/**
+ * @function appendDefaultColumns
+ * @description Append default columns to a table schema
+ */
+export function appendDefaultColumns<ColumnsMap extends Record<string, PgColumnBuilderBase>>(
+    columns: ColumnsMap,
+): ColumnsMap & typeof DEFAULT_COLUMNS {
+    return { ...DEFAULT_COLUMNS, ...columns };
 }

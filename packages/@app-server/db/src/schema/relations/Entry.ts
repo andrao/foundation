@@ -6,7 +6,7 @@ import { Project } from '../tables/Project';
  * @const EntryRelations
  * @description Relations for the entry table
  */
-export const EntryRelations = relations(Entry, ({ many, one }) => ({
+export const EntryRelations = relations(Entry, ({ one }) => ({
     project: one(Project, {
         fields: [Entry.project_id],
         references: [Project.project_id],
