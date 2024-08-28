@@ -1,0 +1,14 @@
+{
+    "name": "@acme/postgres",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "clean": "git clean -xdf .next .turbo node_modules",
+        "dev": "docker-compose -f ./docker-compose.yml up -d",
+        "format": "prettier --check . --ignore-path ../../.prettierignore",
+        "lint": "eslint .",
+        "psql": "psql -h localhost -p 5432 -U myuser mydb",
+        "with-env": "dotenv -e ../../.env --"
+    }
+}

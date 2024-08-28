@@ -19,6 +19,7 @@
         "@andrao/async": "1.0.0",
         "@andrao/llm-client": "*",
         "@andrao/tools": "1.1.0",
+        "@supabase/supabase-js": "2.45.2",
         "@t3-oss/env-nextjs": "0.11.0",
         "chalk": "4.1.2",
         "zod": "3.23.8"
