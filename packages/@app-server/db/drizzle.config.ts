@@ -1,13 +1,13 @@
 import type { Config } from 'drizzle-kit';
-import { getConnectionUri } from './src/util/getConnectionUri';
+import { getPlanetScaleDbCredentials } from './src/connections/planetscale/params';
 
 /**
  * @see https://orm.drizzle.team/kit-docs/conf
  */
 export default {
     schema: './src/schema/*',
-    dialect: 'postgresql',
-    dbCredentials: { url: getConnectionUri('MIGRATION') },
+    dialect: 'mysql',
+    dbCredentials: getPlanetScaleDbCredentials(),
     out: './.drizzle',
     // tablesFilter: ['app_*'],
 } satisfies Config;

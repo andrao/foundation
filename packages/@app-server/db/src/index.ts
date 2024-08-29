@@ -15,11 +15,9 @@ export type {
     PgTimestamp,
     PgVarchar,
 } from 'drizzle-orm/pg-core';
-// export * from 'drizzle-zod';
 
 export * from './dbx';
+// export * from 'drizzle-zod';
 export * from './drizzle-zod-fix';
 export * from './schema';
 export * from './types';
-
-export { cosineSimilarity, euclideanDistance, maxInnerProduct } from './custom-types/Vector';
