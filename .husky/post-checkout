@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+# ------------------------------
+# Get the new branch name, db name
+new_branch=$(git rev-parse --abbrev-ref HEAD)
+db_name="branch__$(echo "$new_branch" | sed 's/-/_/g')"
+
+echo ""
+
+# ------------------------------
+# Prompt for inputs
+# - Sensitive to /dev/tty inavailability
+printf "\033[36mWould you like to install dependencies? \033[35m(y/N) \033[0m"
+if ! read -r install_deps < /dev/tty; then
+    install_deps="n"
+fi
+
+printf "\033[36mWould you like to create a MySQL database for this branch? \033[35m(y/N) \033[0m"
+if ! read -r create_db < /dev/tty; then
+    create_db="n"
+fi
+
+# ------------------------------
+# Install dependencies
+if [ "$install_deps" = "y" ] || [ "$install_deps" = "Y" ]; then
+    pnpm install
+fi
+
+# ------------------------------
+# Create a new schema for the branch
+if [ "$create_db" = "y" ] || [ "$create_db" = "Y" ]; then
+    printf ". \033[36mcreating database\033[0m\n"
+    mysql --defaults-extra-file=apps/mysql/my.cnf -h 127.0.0.1 -P 7000 -e 'CREATE DATABASE IF NOT EXISTS '"$db_name"';'
+    printf "\033[35m└─ Database \033[32m%s\033[0m \033[35mcreated\033[0m\n" "$db_name"
+fi
+
+# ------------------------------
+# Print the new branch name
+echo ""
+printf "\033[90mChecked out branch: \033[32m%s\033[0m\n" "$new_branch"
