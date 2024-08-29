@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
     validate-migrations:
+        if: github.event_name == 'pull_request'
         environment: staging
         runs-on: ubuntu-latest
         steps:
@@ -34,13 +35,15 @@ jobs:
             - name: Assert no changes
               uses: tj-actions/verify-changed-files@v20
               with:
+                  files: |
+                      packages/**/db
                   fail-if-changed: true
                   fail-message: 'Migrations are not up to date. Please run `pnpm -F db migrate:generate` to generate a migration file.'
 
     create-branch:
         needs:
             - validate-migrations
-        if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
+        if: github.event_name == 'pull_request' && github.event.action != 'closed'
         environment: staging
         runs-on: ubuntu-latest
         steps:
@@ -68,9 +71,8 @@ jobs:
 
     apply-migrations:
         needs:
-            - validate-migrations
             - create-branch
-        if: github.event_name == 'pull_request' && (github.event.action == 'synchronize' || github.event.action == 'opened' || github.event.action == 'reopened') && (needs.create-branch.result == 'success' || needs.create-branch.result == 'skipped')
+        if: github.event_name == 'pull_request' && github.event.action != 'closed'
         environment: staging
         runs-on: ubuntu-latest
         steps:
@@ -89,7 +91,8 @@ jobs:
               run: pnpm run -F db migrate:apply:ci
 
     deploy-request:
-        needs: apply-migrations
+        needs:
+            - apply-migrations
         if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
         environment: staging
         runs-on: ubuntu-latest
@@ -132,9 +135,7 @@ jobs:
                   filePath: migration-message.txt
 
     delete-branch:
-        needs:
-            - create-branch
-        if: github.event_name == 'pull_request' && github.event.action == 'closed' && (needs.create-branch.result == 'success' || needs.create-branch.result == 'skipped')
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
         environment: staging
         runs-on: ubuntu-latest
         steps:
