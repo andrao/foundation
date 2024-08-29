@@ -23,6 +23,7 @@
         "with-env": "dotenv -e ../../../.env --"
     },
     "dependencies": {
+        "@acme/constants": "workspace:*",
         "@andrao/tools": "1.1.0",
         "@neondatabase/serverless": "0.9.4",
         "@planetscale/database": "1.19.0",

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "@andrao/tsconfig/base.json",
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "outDir": "bin",
+        "pretty": true,
+        "sourceMap": true,
+        "target": "es2020"
+    },
+    "include": ["index.ts"]
+}

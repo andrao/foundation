@@ -1,3 +1,4 @@
+import { DB_NAME } from '@acme/constants/planetscale';
 import type { Config } from '@planetscale/database';
 import type { Config as DrizzleConfig } from 'drizzle-kit';
 import { env } from '../../../env.js';
@@ -34,7 +35,7 @@ export function getPlanetScaleDbCredentials() {
                   host: env.PLANETSCALE_HOST,
                   user: env.PLANETSCALE_USERNAME,
                   password: env.PLANETSCALE_PASSWORD,
-                  database: 'playground',
+                  database: DB_NAME,
                   ssl: {
                       rejectUnauthorized: true,
                   },
