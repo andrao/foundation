@@ -8,6 +8,7 @@
     },
     "scripts": {
         "clean": "rm -rf .turbo node_modules",
+        "drizzle-kit": "pnpm with-env drizzle-kit",
         "format": "prettier --check . --ignore-path ../../../.prettierignore",
         "jest": "pnpm with-env pnpm run -C ../../.. jest",
         "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
