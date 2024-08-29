@@ -21,7 +21,7 @@
         "@acme/db": "workspace:*",
         "@acme/paths": "workspace:*",
         "@andrao/tools": "1.1.0",
-        "@t3-oss/env-nextjs": "0.11.0",
+        "@t3-oss/env-nextjs": "0.11.1",
         "@trpc/server": "next",
         "cors": "2.8.5",
         "express": "4.19.2",

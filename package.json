@@ -38,8 +38,8 @@
     },
     "devDependencies": {
         "@andrao/eslint": "2.1.0",
-        "@andrao/prettier": "*",
-        "@andrao/tsconfig": "*",
+        "@andrao/prettier": "^1.0.2",
+        "@andrao/tsconfig": "^1.0.0",
         "@jest/globals": "29.7.0",
         "@playwright/test": "1.46.1",
         "@swc/jest": "0.2.36",
