@@ -27,18 +27,23 @@ export function getPlanetScaleConnectionParams() {
  */
 export function getPlanetScaleDbCredentials() {
     const url = env.PLANETSCALE_DATABASE_URL;
+    if (url) return { url };
 
-    return (
-        url
-            ? { url }
-            : {
-                  host: env.PLANETSCALE_HOST,
-                  user: env.PLANETSCALE_USERNAME,
-                  password: env.PLANETSCALE_PASSWORD,
-                  database: DB_NAME,
-                  ssl: {
-                      rejectUnauthorized: true,
-                  },
-              }
-    ) satisfies Extract<DrizzleConfig, { dialect: 'mysql' }>['dbCredentials'];
+    const {
+        PLANETSCALE_HOST: host,
+        PLANETSCALE_USERNAME: user,
+        PLANETSCALE_PASSWORD: password,
+    } = env;
+
+    if (!host || !user || !password) throw new Error('Missing PlanetScale credentials');
+
+    return {
+        host,
+        user,
+        password,
+        database: DB_NAME,
+        ssl: {
+            rejectUnauthorized: true,
+        },
+    } satisfies Extract<DrizzleConfig, { dialect: 'mysql' }>['dbCredentials'];
 }

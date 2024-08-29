@@ -25,10 +25,10 @@ runs:
         # - Note that boolean input gets treated as a string
         - name: Install dependencies
           if: ${{ inputs.ignore-scripts == 'false' }}
-          run: pnpm install --frozen-lockfile
           shell: bash
+          run: pnpm install --frozen-lockfile
 
         - name: Install dependencies, ignore scripts
           if: ${{ inputs.ignore-scripts == 'true' }}
-          run: pnpm install --frozen-lockfile --ignore-scripts
           shell: bash
+          run: pnpm install --frozen-lockfile --ignore-scripts

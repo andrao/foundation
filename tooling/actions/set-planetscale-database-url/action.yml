@@ -1,0 +1,57 @@
+name: 'Set env.PLANETSCALE_DATABASE_URL'
+description: 'Generate password for PlanetScale database branch & set env.PLANETSCALE_DATABASE_URL'
+
+inputs:
+    ttl:
+        description: 'Password TTL'
+        required: false
+        default: 1h
+    planetscale_service_token_id:
+        description: 'PlanetScale service token ID'
+        required: true
+    planetscale_service_token:
+        description: 'PlanetScale service token'
+        required: true
+    planetscale_database_name:
+        description: 'PlanetScale database name'
+        required: true
+    planetscale_org_name:
+        description: 'PlanetScale organization name'
+        required: true
+
+runs:
+    using: composite
+    steps:
+        # --- Start setup --- #
+        - uses: planetscale/setup-pscale-action@v1
+        - uses: ./tooling/actions/set-planetscale-branch-name
+        # --- End setup --- #
+
+        - name: Set env.PLANETSCALE_DATABASE_URL
+          env:
+              PLANETSCALE_SERVICE_TOKEN_ID: ${{ inputs.planetscale_service_token_id }}
+              PLANETSCALE_SERVICE_TOKEN: ${{ inputs.planetscale_service_token }}
+          shell: bash
+          run: |
+              # Generate a random password name
+              random_suffix=$(openssl rand -hex 4)
+              pw_name="pw-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}-${random_suffix}"
+
+              # Create the password
+              response=$(pscale password create ${{ inputs.planetscale_database_name }} ${{ env.PLANETSCALE_BRANCH_NAME }} $pw_name --ttl ${{ inputs.ttl }} -f json --org ${{ inputs.planetscale_org_name }})
+
+              # Parse the response
+              id=$(echo "$response" | jq -r '.id')
+              host=$(echo "$response" | jq -r '.access_host_url')
+              username=$(echo "$response" | jq -r '.username')
+              password=$(echo "$response" | jq -r '.plain_text')
+              ssl_mode="verify_identity"  # Assuming a default value for ssl_mode
+              ssl_ca="/etc/ssl/certs/ca-certificates.crt"  # Assuming a default value for ssl_ca
+
+              # Set the password ID, allows us to later delete it if wanted.
+              echo "PASSWORD_ID=$id" >> $GITHUB_ENV
+
+              # Set env.PLANETSCALE_DATABASE_URL
+              database_url="mysql://$username:$password@$host/${{ inputs.planetscale_database_name }}?sslmode=$ssl_mode&sslca=$ssl_ca"
+              echo "PLANETSCALE_DATABASE_URL=$database_url" >> $GITHUB_ENV
+              echo "::add-mask::$PLANETSCALE_DATABASE_URL"
