@@ -14,7 +14,7 @@
         "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
         "lint": "eslint .",
         "migrate:apply": "pnpm run migrate:generate && pnpm run migrate:apply:ci",
-        "migrate:apply:ci": "pnpm with-env drizzle-kit push --config=$PWD/drizzle.config.ts",
+        "migrate:apply:ci": "pnpm with-env drizzle-kit migrate --config=$PWD/drizzle.config.ts",
         "migrate:generate": "pnpm with-env drizzle-kit generate --config=$PWD/drizzle.config.ts",
         "migrate:generate-new": "pnpm migrate:generate --custom",
         "studio": "pnpm with-env drizzle-kit studio",
