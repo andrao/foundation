@@ -45,13 +45,11 @@ runs:
               host=$(echo "$response" | jq -r '.access_host_url')
               username=$(echo "$response" | jq -r '.username')
               password=$(echo "$response" | jq -r '.plain_text')
-              ssl_mode="verify_identity"  # Assuming a default value for ssl_mode
-              ssl_ca="/etc/ssl/certs/ca-certificates.crt"  # Assuming a default value for ssl_ca
 
               # Set the password ID, allows us to later delete it if wanted.
               echo "PASSWORD_ID=$id" >> $GITHUB_ENV
 
               # Set env.PLANETSCALE_DATABASE_URL
-              database_url="mysql://$username:$password@$host/${{ inputs.planetscale_database_name }}?sslmode=$ssl_mode&sslca=$ssl_ca"
+              database_url="mysql://$username:$password@$host/${{ inputs.planetscale_database_name }}?ssl={\"rejectUnauthorized\":true}"
               echo "PLANETSCALE_DATABASE_URL=$database_url" >> $GITHUB_ENV
               echo "::add-mask::$PLANETSCALE_DATABASE_URL"
