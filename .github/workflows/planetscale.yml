@@ -20,14 +20,11 @@ jobs:
             # --- Start setup --- #
             - uses: actions/checkout@v4
             - uses: ./tooling/actions/install-dependencies
-            - uses: ./tooling/actions/set-planetscale-database-url
-              with:
-                  planetscale_service_token_id: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
-                  planetscale_service_token: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
-                  planetscale_database_name: ${{ vars.PLANETSCALE_DATABASE_NAME }}
-                  planetscale_org_name: ${{ vars.PLANETSCALE_ORG_NAME }}
-                  ttl: 5m
             # --- End setup --- #
+
+            - name: Set placeholder env.PLANETSCALE_DATABASE_URL
+              run: |
+                  echo "PLANETSCALE_DATABASE_URL=mysql://" >> $GITHUB_ENV
 
             - name: Generate migration code
               run: pnpm -F db migrate:generate
