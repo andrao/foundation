@@ -30,7 +30,7 @@ jobs:
             # --- End setup --- #
 
             - name: Generate migration code
-              run: pnpm run -F db migrate:generate
+              run: pnpm -F db migrate:generate
 
             - name: Assert no changes
               uses: tj-actions/verify-changed-files@v20
@@ -89,7 +89,7 @@ jobs:
             # --- End setup --- #
 
             - name: Apply migrations
-              run: pnpm run -F db migrate:apply:ci
+              run: pnpm -F db migrate:apply:ci
 
     deploy-request:
         needs:
