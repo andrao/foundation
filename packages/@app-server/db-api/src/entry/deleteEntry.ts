@@ -17,18 +17,16 @@ export async function deleteEntry(
     /**
      * Soft-delete entity
      */
-    const [e] = await ctx.dbx(db =>
+    const { rowsAffected: n } = await ctx.dbx(db =>
         db
             .update(t.Entry)
             .set({ deleted_at: sql`CURRENT_TIMESTAMP`, updated_at: sql`CURRENT_TIMESTAMP` })
-            .where(eq(t.Entry.entry_id, entry_id))
-            .returning(),
+            .where(eq(t.Entry.entry_id, entry_id)),
     );
-    if (!e) throw new TRPCError({ code: 'NOT_FOUND' });
+
+    if (n === 0) throw new TRPCError({ code: 'NOT_FOUND' });
 
     /**
      * @todo Publish event
      */
-
-    return e;
 }

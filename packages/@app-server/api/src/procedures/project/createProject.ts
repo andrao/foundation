@@ -1,4 +1,4 @@
-import { createInsertSchema, createSelectSchema, t } from '@acme/db';
+import { createInsertSchema, t } from '@acme/db';
 import { createProject } from '@acme/db-api';
 import { protectedProcedure } from '../../trpc/procedure-middleware';
 
@@ -8,7 +8,6 @@ import { protectedProcedure } from '../../trpc/procedure-middleware';
  */
 export const createProjectProcedure = protectedProcedure()
     .input(createInsertSchema(t.Project))
-    .output(createSelectSchema(t.Project))
     .mutation(async ({ input, ctx }) => {
-        return await createProject(input, ctx);
+        await createProject(input, ctx);
     });

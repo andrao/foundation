@@ -8,7 +8,6 @@
         "cli": "mysql -h 127.0.0.1 -P 7000 -u myuser -pmypassword",
         "dev": "docker-compose -f ./docker-compose.yml up",
         "format": "prettier --check . --ignore-path ../../.prettierignore",
-        "lint": "eslint .",
         "with-env": "dotenv -e ../../.env --"
     }
 }
