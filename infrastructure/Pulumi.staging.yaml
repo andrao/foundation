@@ -1,4 +1,5 @@
 config:
+    aws:region: us-east-1
     foundation:PLANETSCALE_SERVICE_TOKEN:
         secure: AAABAOC0Zogfk41iM5HTpHgGljB84pvzkG7T5V+Tjfy5/ugNJYfVyiA3OFerU3KNv7VoD6+FlnOgVwjkl9bPXG5NoOgyXFFQcHhqysVZnnNE/hPzH5Y=
     foundation:PLANETSCALE_SERVICE_TOKEN_ID:

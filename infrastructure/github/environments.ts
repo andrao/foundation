@@ -8,11 +8,10 @@ const config = new pulumi.Config();
 const stack = pulumi.getStack();
 
 /**
- * Get the repository
+ * @const REPO
+ * @description The GitHub repository
  */
-export const REPO = github.getRepository({
-    fullName: 'andrao/foundation',
-});
+export const REPO = github.getRepository({ fullName: 'andrao/foundation' });
 
 /**
  * Set up environments for the repository

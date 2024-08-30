@@ -20,11 +20,13 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "cSpell.words": [
+        "Airbyte",
         "andrao",
         "Autosize",
         "lucide",
         "nextjs",
         "PlanetScale",
+        "Pulumi",
         "shadcn",
         "sonner",
         "TRPC",

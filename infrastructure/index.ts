@@ -1,12 +1,11 @@
-import * as aws from '@pulumi/aws';
-import * as awsx from '@pulumi/awsx';
-import * as pulumi from '@pulumi/pulumi';
+import { AIRBYTE_USER } from './aws/iam';
+import { BUCKET } from './aws/s3';
 import { REPO } from './github/environments';
 
-// // Create an AWS resource (S3 Bucket)
-// const bucket = new aws.s3.Bucket('my-bucket');
+/**
+ * @note Must import & use ≥1 resource from all subfiles in order for Pulumi to recognize
+ */
 
-// // Export the name of the bucket
-// export const bucketName = bucket.id;
-
+export const AIRBYTE_USER_NAME = AIRBYTE_USER.name;
+export const BUCKET_NAME = BUCKET.id;
 export const GITHUB_REPO_FULL_NAME = REPO.then(r => r.fullName);
