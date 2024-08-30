@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
     validate-migrations:
+        name: Validate MySQL migrations against schema
         if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'synchronize' || github.event.action == 'reopened')
         environment: staging
         runs-on: ubuntu-latest
@@ -38,6 +39,7 @@ jobs:
                   fail-message: 'Migrations are not up to date. Please run `pnpm -F db migrate:generate` to generate a migration file.'
 
     create-branch:
+        name: Create a PlanetScale branch
         needs:
             - validate-migrations
         environment: staging
@@ -67,6 +69,7 @@ jobs:
                   fi
 
     apply-migrations:
+        name: Apply MySQL migrations to branch
         needs:
             - create-branch
         environment: staging
@@ -87,6 +90,7 @@ jobs:
               run: pnpm -F db migrate:apply:ci
 
     create-deploy-request:
+        name: Create a PlanetScale deploy request
         if: (github.event_name == 'pull_request_review' && github.event.review.state == 'approved') || (github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'planetscale-deploy-request')
         environment: staging
         runs-on: ubuntu-latest
@@ -130,6 +134,7 @@ jobs:
                   filePath: migration-message.txt
 
     delete-branch:
+        name: Delete PlanetScale branch
         if: github.event_name == 'pull_request' && github.event.action == 'closed'
         environment: staging
         runs-on: ubuntu-latest
