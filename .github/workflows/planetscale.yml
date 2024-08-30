@@ -49,6 +49,7 @@ jobs:
         steps:
             # --- Start setup --- #
             - uses: planetscale/setup-pscale-action@v1
+            - uses: actions/checkout@v4
             - uses: ./tooling/actions/set-planetscale-branch-name
             # --- End setup --- #
 
@@ -101,6 +102,7 @@ jobs:
         steps:
             # --- Start setup --- #
             - uses: planetscale/setup-pscale-action@v1
+            - uses: actions/checkout@v4
             - uses: ./tooling/actions/set-planetscale-branch-name
             # --- End setup --- #
 
@@ -141,6 +143,7 @@ jobs:
         steps:
             # --- Start setup --- #
             - uses: planetscale/setup-pscale-action@v1
+            - uses: actions/checkout@v4
             - uses: ./tooling/actions/set-planetscale-branch-name
             # --- End setup --- #
 
