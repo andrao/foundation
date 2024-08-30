@@ -35,7 +35,7 @@ runs:
           run: |
               # Generate a random password name
               random_suffix=$(openssl rand -hex 4)
-              pw_name="pw-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}-${random_suffix}"
+              pw_name="gh-${random_suffix}"
 
               # Create the password
               response=$(pscale password create ${{ inputs.planetscale_database_name }} ${{ env.PLANETSCALE_BRANCH_NAME }} $pw_name --ttl ${{ inputs.ttl }} -f json --org ${{ inputs.planetscale_org_name }})
@@ -47,7 +47,7 @@ runs:
               password=$(echo "$response" | jq -r '.plain_text')
 
               # Set the password ID, allows us to later delete it if wanted.
-              echo "PASSWORD_ID=$id" >> $GITHUB_ENV
+              echo "PLANETSCALE_PASSWORD_ID=$id" >> $GITHUB_ENV
 
               # Set env.PLANETSCALE_DATABASE_URL
               database_url="mysql://$username:$password@$host/${{ inputs.planetscale_database_name }}?ssl={\"rejectUnauthorized\":true}"
