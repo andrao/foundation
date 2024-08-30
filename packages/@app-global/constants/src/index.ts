@@ -1,4 +1,5 @@
 export * from './models';
+export * from './planetscale';
 
 /**
  * @const CONSTANT

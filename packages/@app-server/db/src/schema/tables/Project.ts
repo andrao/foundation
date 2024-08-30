@@ -1,4 +1,4 @@
-import { index, varchar } from 'drizzle-orm/pg-core';
+import { varchar } from 'drizzle-orm/mysql-core';
 import { createTable } from '../common/createTable';
 
 /**
@@ -8,14 +8,10 @@ import { createTable } from '../common/createTable';
 export const Project = createTable({
     name: 'project',
     columns: {
-        project_id: varchar('project_id').primaryKey(),
-        name: varchar('name').notNull(),
+        project_id: varchar('project_id', { length: 36 }).primaryKey(),
+        name: varchar('name', { length: 255 }).notNull(),
 
-        org_id: varchar('org_id'),
-        user_id: varchar('user_id'),
+        org_id: varchar('org_id', { length: 36 }),
+        user_id: varchar('user_id', { length: 36 }),
     },
-    extraConfig: table => ({
-        project_org_idx: index('project_org_idx').on(table.org_id),
-        project_user_idx: index('project_user_idx').on(table.user_id),
-    }),
 });

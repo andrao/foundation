@@ -3,5 +3,5 @@ packages:
     - packages/@app-browser/*
     - packages/@app-global/*
     - packages/@app-server/*
-    # - infrastructure/*
+    - infrastructure
     - tooling/*

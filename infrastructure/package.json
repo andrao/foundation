@@ -1,0 +1,23 @@
+{
+    "name": "@acme/infrastructure",
+    "type": "module",
+    "main": "index.ts",
+    "scripts": {
+        "cli": "pnpm with-env pulumi",
+        "format": "prettier --check . --ignore-path ../.prettierignore",
+        "preview": "pnpm with-env pulumi preview",
+        "refresh": "pnpm with-env pulumi refresh",
+        "up": "pnpm with-env pulumi up",
+        "with-env": "dotenv -e ../.env --"
+    },
+    "dependencies": {
+        "@acme/constants": "workspace:*",
+        "@pulumi/aws": "6.50.1",
+        "@pulumi/awsx": "2.14.0",
+        "@pulumi/github": "6.2.3",
+        "@pulumi/pulumi": "3.130.0"
+    },
+    "devDependencies": {
+        "tsx": "4.16.5"
+    }
+}

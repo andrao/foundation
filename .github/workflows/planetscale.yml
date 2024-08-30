@@ -1,0 +1,153 @@
+name: PlanetScale
+
+on:
+    pull_request:
+        branches: '*'
+        types: [opened, synchronize, reopened, closed, labeled]
+    pull_request_review:
+        types: [submitted]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    validate-migrations:
+        name: Validate MySQL migrations against schema
+        if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'synchronize' || github.event.action == 'reopened')
+        environment: staging
+        runs-on: ubuntu-latest
+        steps:
+            # --- Start setup --- #
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
+            # --- End setup --- #
+
+            - name: Set placeholder env.PLANETSCALE_DATABASE_URL
+              run: |
+                  echo "PLANETSCALE_DATABASE_URL=mysql://" >> $GITHUB_ENV
+
+            - name: Generate migration code
+              run: pnpm -F db migrate:generate
+
+            - name: Assert no changes
+              uses: tj-actions/verify-changed-files@v20
+              with:
+                  files: |
+                      packages/**/db
+                  fail-if-changed: true
+                  fail-message: 'Migrations are not up to date. Please run `pnpm -F db migrate:generate` to generate a migration file.'
+
+    create-branch:
+        name: Create a PlanetScale branch
+        needs:
+            - validate-migrations
+        environment: staging
+        runs-on: ubuntu-latest
+        steps:
+            # --- Start setup --- #
+            - uses: planetscale/setup-pscale-action@v1
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/set-planetscale-branch-name
+            # --- End setup --- #
+
+            - name: Create branch
+              env:
+                  PLANETSCALE_SERVICE_TOKEN_ID: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+                  PLANETSCALE_SERVICE_TOKEN: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
+              run: |
+                  set +e
+                  pscale branch show ${{ vars.PLANETSCALE_DATABASE_NAME }} ${{ env.PLANETSCALE_BRANCH_NAME }} --org ${{ vars.PLANETSCALE_ORG_NAME }}
+                  exit_code=$?
+                  set -e
+
+                  if [ $exit_code -eq 0 ]; then
+                    echo "Branch exists. Skipping branch creation."
+                  else
+                    echo "Branch does not exist. Creating."
+                    pscale branch create ${{ vars.PLANETSCALE_DATABASE_NAME }} ${{ env.PLANETSCALE_BRANCH_NAME }} --wait --org ${{ vars.PLANETSCALE_ORG_NAME }}
+                  fi
+
+    apply-migrations:
+        name: Apply MySQL migrations to branch
+        needs:
+            - create-branch
+        environment: staging
+        runs-on: ubuntu-latest
+        steps:
+            # --- Start setup --- #
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/install-dependencies
+            - uses: ./tooling/actions/set-planetscale-database-url
+              with:
+                  planetscale_service_token_id: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+                  planetscale_service_token: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
+                  planetscale_database_name: ${{ vars.PLANETSCALE_DATABASE_NAME }}
+                  planetscale_org_name: ${{ vars.PLANETSCALE_ORG_NAME }}
+            # --- End setup --- #
+
+            - name: Apply migrations
+              run: pnpm -F db migrate:apply:ci
+
+    create-deploy-request:
+        name: Create a PlanetScale deploy request
+        if: (github.event_name == 'pull_request_review' && github.event.review.state == 'approved') || (github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'planetscale-deploy-request')
+        environment: staging
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+        steps:
+            # --- Start setup --- #
+            - uses: planetscale/setup-pscale-action@v1
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/set-planetscale-branch-name
+            # --- End setup --- #
+
+            - name: Open deploy request
+              env:
+                  PLANETSCALE_SERVICE_TOKEN_ID: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+                  PLANETSCALE_SERVICE_TOKEN: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
+              run: pscale deploy-request create ${{ vars.PLANETSCALE_DATABASE_NAME }} ${{ env.PLANETSCALE_BRANCH_NAME }} --org ${{ vars.PLANETSCALE_ORG_NAME }}
+
+            - name: Set env.DEPLOY_REQUEST_NUMBER
+              env:
+                  PLANETSCALE_SERVICE_TOKEN_ID: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+                  PLANETSCALE_SERVICE_TOKEN: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
+              run: |
+                  deploy_request_number=$(pscale deploy-request show ${{ vars.PLANETSCALE_DATABASE_NAME }} ${{ env.PLANETSCALE_BRANCH_NAME }} --org ${{ vars.PLANETSCALE_ORG_NAME }} -f json | jq -r '.number')
+                  echo "DEPLOY_REQUEST_NUMBER=$deploy_request_number" >> $GITHUB_ENV
+
+            - name: Comment on PR
+              env:
+                  PLANETSCALE_SERVICE_TOKEN_ID: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+                  PLANETSCALE_SERVICE_TOKEN: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
+              run: |
+                  echo "Deploy request opened: https://app.planetscale.com/${{ vars.PLANETSCALE_ORG_NAME }}/${{ vars.PLANETSCALE_DATABASE_NAME }}/deploy-requests/${{ env.DEPLOY_REQUEST_NUMBER }}" >> migration-message.txt
+                  echo "" >> migration-message.txt
+                  echo "\`\`\`diff" >> migration-message.txt
+                  pscale deploy-request diff ${{ vars.PLANETSCALE_DATABASE_NAME }} ${{ env.DEPLOY_REQUEST_NUMBER }} --org ${{ vars.PLANETSCALE_ORG_NAME }} -f json | jq -r '.[].raw' >> migration-message.txt
+                  echo "\`\`\`" >> migration-message.txt
+
+            - name: Comment PR - db migrated
+              uses: thollander/actions-comment-pull-request@v2
+              with:
+                  filePath: migration-message.txt
+
+    delete-branch:
+        name: Delete PlanetScale branch
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        environment: staging
+        runs-on: ubuntu-latest
+        steps:
+            # --- Start setup --- #
+            - uses: planetscale/setup-pscale-action@v1
+            - uses: actions/checkout@v4
+            - uses: ./tooling/actions/set-planetscale-branch-name
+            # --- End setup --- #
+
+            - name: Delete branch
+              env:
+                  PLANETSCALE_SERVICE_TOKEN_ID: ${{ secrets.PLANETSCALE_SERVICE_TOKEN_ID }}
+                  PLANETSCALE_SERVICE_TOKEN: ${{ secrets.PLANETSCALE_SERVICE_TOKEN }}
+              run: |
+                  pscale branch delete ${{ vars.PLANETSCALE_DATABASE_NAME }} ${{ env.PLANETSCALE_BRANCH_NAME }} --force --org ${{ vars.PLANETSCALE_ORG_NAME }}

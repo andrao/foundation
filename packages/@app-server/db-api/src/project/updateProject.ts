@@ -20,18 +20,16 @@ export async function updateProject(
     /**
      * Update entity
      */
-    const [e] = await ctx.dbx(db =>
+    const { rowsAffected: n } = await ctx.dbx(db =>
         db
             .update(t.Project)
             .set({ ...update, updated_at: sql`CURRENT_TIMESTAMP` })
-            .where(eq(t.Project.project_id, project_id))
-            .returning(),
+            .where(eq(t.Project.project_id, project_id)),
     );
-    if (!e) throw new TRPCError({ code: 'NOT_FOUND' });
+
+    if (n === 0) throw new TRPCError({ code: 'NOT_FOUND' });
 
     /**
      * @todo Publish event
      */
-
-    return e;
 }

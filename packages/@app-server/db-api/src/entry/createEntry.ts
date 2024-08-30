@@ -1,5 +1,4 @@
 import { createInsertSchema, t } from '@acme/db';
-import { safe } from '@andrao/tools';
 import { TRPCError } from '@trpc/server';
 import type { z } from 'zod';
 import type { IDbApiContext } from '../types';
@@ -24,11 +23,9 @@ export async function createEntry(
     /**
      * Save
      */
-    const [entry] = await ctx.dbx(db => db.insert(t.Entry).values(input).returning());
+    await ctx.dbx(db => db.insert(t.Entry).values(input));
 
     /**
      * @todo Publish event
      */
-
-    return safe(entry);
 }

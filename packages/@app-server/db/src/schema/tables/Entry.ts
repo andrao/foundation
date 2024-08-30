@@ -1,16 +1,5 @@
-import { index, pgEnum, varchar } from 'drizzle-orm/pg-core';
+import { index, mysqlEnum, varchar } from 'drizzle-orm/mysql-core';
 import { createTable } from '../common/createTable';
-import { Project } from './Project';
-
-/**
- * @const EntryStatus
- * @description The processing status of an Entry
- */
-export const EntryStatus = pgEnum('EntryStatus', [
-    /** @note that order is important! */
-    'unprocessed',
-    'processed',
-]);
 
 /**
  * @const Entry
@@ -19,20 +8,20 @@ export const EntryStatus = pgEnum('EntryStatus', [
 export const Entry = createTable({
     name: 'entry',
     columns: {
-        entry_id: varchar('entry_id').primaryKey(),
+        entry_id: varchar('entry_id', { length: 36 }).primaryKey(),
 
-        project_id: varchar('project_id')
-            .notNull()
-            .references(() => Project.project_id, {
-                onDelete: 'set null',
-            }),
-        status: EntryStatus('status').notNull().default('unprocessed'),
+        project_id: varchar('project_id', { length: 36 }).notNull(),
 
-        org_id: varchar('org_id'),
-        user_id: varchar('user_id'),
+        status: mysqlEnum('status', ['unprocessed', 'processed']).notNull().default('unprocessed'),
+
+        org_id: varchar('org_id', { length: 36 }),
+        user_id: varchar('user_id', { length: 36 }),
     },
     extraConfig: table => ({
-        org_idx: index('org_idx').on(table.org_id),
-        user_idx: index('user_idx').on(table.user_id),
+        idx_org_id: index('idx_org_id').on(table.org_id),
+        idx_user_id: index('idx_user_id').on(table.user_id),
+
+        // Foreign keys
+        idx_project_id: index('idx_project_id').on(table.project_id),
     }),
 });

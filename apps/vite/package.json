@@ -20,7 +20,7 @@
     "dependencies": {
         "@acme/api-client": "workspace:*",
         "@acme/paths": "workspace:*",
-        "@t3-oss/env-nextjs": "0.11.0",
+        "@t3-oss/env-nextjs": "0.11.1",
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "zod": "3.23.8"

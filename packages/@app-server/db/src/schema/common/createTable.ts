@@ -1,17 +1,17 @@
-import { sql, type BuildColumns, type BuildExtraConfigColumns } from 'drizzle-orm';
+import { sql, type BuildColumns } from 'drizzle-orm';
 import {
-    pgTableCreator,
+    mysqlTableCreator,
     timestamp,
-    type PgColumnBuilderBase,
-    type PgTableExtraConfig,
-    type PgTableWithColumns,
-} from 'drizzle-orm/pg-core';
+    type MySqlColumnBuilderBase,
+    type MySqlTableExtraConfig,
+    type MySqlTableWithColumns,
+} from 'drizzle-orm/mysql-core';
 
 /**
  * Prefix table names
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-const nameTable = pgTableCreator(name => name);
+const nameTable = mysqlTableCreator(name => name);
 
 /**
  * @const DEFAULT_COLUMNS
@@ -23,7 +23,7 @@ const DEFAULT_COLUMNS = {
         .notNull(),
     updated_at: timestamp('updated_at')
         .default(sql`CURRENT_TIMESTAMP`)
-        .defaultNow()
+        .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
         .notNull(),
     deleted_at: timestamp('deleted_at'),
 };
@@ -35,7 +35,7 @@ const DEFAULT_COLUMNS = {
  */
 export function createTable<
     TableName extends string,
-    ColumnsMap extends Record<string, PgColumnBuilderBase>,
+    ColumnsMap extends Record<string, MySqlColumnBuilderBase>,
 >({
     name,
     columns,
@@ -44,13 +44,13 @@ export function createTable<
     name: TableName;
     columns: ColumnsMap;
     extraConfig?: (
-        self: BuildExtraConfigColumns<TableName, ColumnsMap & typeof DEFAULT_COLUMNS, 'pg'>,
-    ) => PgTableExtraConfig;
-}): PgTableWithColumns<{
+        self: BuildColumns<TableName, ColumnsMap & typeof DEFAULT_COLUMNS, 'mysql'>,
+    ) => MySqlTableExtraConfig;
+}): MySqlTableWithColumns<{
     name: TableName;
     schema: undefined;
-    columns: BuildColumns<TableName, ColumnsMap & typeof DEFAULT_COLUMNS, 'pg'>;
-    dialect: 'pg';
+    columns: BuildColumns<TableName, ColumnsMap & typeof DEFAULT_COLUMNS, 'mysql'>;
+    dialect: 'mysql';
 }> {
     return nameTable(name, { ...DEFAULT_COLUMNS, ...columns }, extraConfig);
 }

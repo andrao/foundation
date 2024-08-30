@@ -1,0 +1,8 @@
+config:
+    aws:region: us-east-1
+    foundation:PLANETSCALE_SERVICE_TOKEN:
+        secure: AAABAOC0Zogfk41iM5HTpHgGljB84pvzkG7T5V+Tjfy5/ugNJYfVyiA3OFerU3KNv7VoD6+FlnOgVwjkl9bPXG5NoOgyXFFQcHhqysVZnnNE/hPzH5Y=
+    foundation:PLANETSCALE_SERVICE_TOKEN_ID:
+        secure: AAABAMBIIZu60I8q3LU9bL2R2tOTM8ftVzBIUPl7WwZr1a/8Oph43PeXcoM=
+    github:token:
+        secure: AAABAFo/ngmiK/Jtyt2mfje3C2Nms0dRw3vEXqn3HKWfNQ5xRwKgZz39Q4i+5ODRDpS2Lyxa2/kM3QfHCtWhBS9/M/bQ+YtTz3y6lExgebWlJH7I+qIemN1dMKYDNrBHEk0tsAvwHOl/gXnCiCSF+Z93JywChij0sYl6n/s=

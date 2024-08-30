@@ -19,7 +19,7 @@
         "@acme/constants": "workspace:*",
         "@acme/paths": "workspace:*",
         "@andrao/tools": "1.1.0",
-        "@t3-oss/env-nextjs": "0.11.0",
+        "@t3-oss/env-nextjs": "0.11.1",
         "express": "4.19.2",
         "zod": "3.23.8"
     },

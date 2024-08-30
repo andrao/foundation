@@ -1,0 +1,9 @@
+name: 'Set env.PLANETSCALE_BRANCH_NAME'
+description: 'Set env.PLANETSCALE_BRANCH_NAME'
+
+runs:
+    using: composite
+    steps:
+        - name: Set env.PLANETSCALE_BRANCH_NAME
+          shell: bash
+          run: echo "PLANETSCALE_BRANCH_NAME=$(echo ${{ github.head_ref }} | tr -cd '[:alnum:]-'| tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
