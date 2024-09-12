@@ -1,12 +1,11 @@
 {
-    "name": "@acme/license-check",
+    "name": "@acme/esbuild-workspace-externals",
     "version": "0.1.0",
     "private": true,
     "main": "src/index.ts",
     "scripts": {
         "clean": "rm -rf .turbo node_modules",
         "format": "prettier --check . --ignore-path ../../.prettierignore",
-        "go": "tsx ./src/index.ts",
         "jest": "pnpm run -C ../.. jest",
         "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
         "lint": "eslint .",
@@ -14,11 +13,7 @@
         "test:i": "pnpm run jest:i $PWD",
         "typecheck": "tsc --noEmit"
     },
-    "dependencies": {
-        "license-checker": "25.0.1"
-    },
     "devDependencies": {
-        "@types/license-checker": "25.0.6",
-        "tsx": "4.16.5"
+        "esbuild": "0.23.1"
     }
 }
