@@ -5,10 +5,17 @@
     "scripts": {
         "cli": "pnpm with-env pulumi",
         "format": "prettier --check . --ignore-path ../../.prettierignore",
-        "preview": "pnpm with-env pulumi preview",
-        "refresh": "pnpm with-env pulumi refresh",
-        "up": "pnpm with-env pulumi up",
+        "preview:production": "pnpm with-env pulumi preview -s $npm_package_config_production",
+        "preview:staging": "pnpm with-env pulumi preview -s $npm_package_config_staging",
+        "refresh:production": "pnpm with-env pulumi refresh -s $npm_package_config_production",
+        "refresh:staging": "pnpm with-env pulumi refresh -s $npm_package_config_staging",
+        "up:production": "pnpm with-env pulumi up -s $npm_package_config_production",
+        "up:staging": "pnpm with-env pulumi up -s $npm_package_config_staging",
         "with-env": "dotenv -e ../../.env --"
+    },
+    "config": {
+        "production": "production",
+        "staging": "staging"
     },
     "dependencies": {
         "@acme/constants": "workspace:*",
