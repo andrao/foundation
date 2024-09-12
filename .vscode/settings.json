@@ -27,6 +27,7 @@
         "nextjs",
         "PlanetScale",
         "Pulumi",
+        "redrive",
         "shadcn",
         "sonner",
         "TRPC",
