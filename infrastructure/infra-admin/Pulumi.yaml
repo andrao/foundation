@@ -6,7 +6,7 @@ runtime:
         # Use tsx to run Typescript
         typescript: false
         nodeargs: --import tsx/esm
-description: A minimal AWS TypeScript Pulumi program
+description: Pulumi admin management
 config:
     pulumi:tags:
         value:

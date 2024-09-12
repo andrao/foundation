@@ -1,0 +1,13 @@
+name: foundation
+runtime:
+    name: nodejs
+    options:
+        packagemanager: pnpm
+        # Use tsx to run Typescript
+        typescript: false
+        nodeargs: --import tsx/esm
+description: Main infrastructure
+config:
+    pulumi:tags:
+        value:
+            pulumi:template: aws-typescript

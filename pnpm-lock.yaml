@@ -248,14 +248,30 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(typescript@5.6.2)(vite@5.4.0(@types/node@20.12.2)(less@4.1.3)(lightningcss@1.27.0)(sass@1.77.8)(terser@5.31.6))
 
-  infrastructure:
+  infrastructure/infra-admin:
+    dependencies:
+      '@pulumi/aws':
+        specifier: 6.51.0
+        version: 6.51.0(typescript@5.6.2)
+      '@pulumi/pulumi':
+        specifier: 3.130.0
+        version: 3.130.0(typescript@5.6.2)
+    devDependencies:
+      tsx:
+        specifier: 4.16.5
+        version: 4.16.5
+
+  infrastructure/infra-main:
     dependencies:
       '@acme/constants':
         specifier: workspace:*
-        version: link:../packages/@app-global/constants
+        version: link:../../packages/@app-global/constants
       '@pulumi/aws':
-        specifier: 6.50.1
-        version: 6.50.1(typescript@5.6.2)
+        specifier: 6.51.0
+        version: 6.51.0(typescript@5.6.2)
+      '@pulumi/aws-native':
+        specifier: 0.121.0
+        version: 0.121.0(typescript@5.6.2)
       '@pulumi/awsx':
         specifier: 2.14.0
         version: 2.14.0(typescript@5.6.2)
@@ -1931,8 +1947,11 @@ packages:
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  '@pulumi/aws@6.50.1':
-    resolution: {integrity: sha512-PzU8DnOsLCFgqeV7eFSrmcyqos2ilsuuRNbGLxP9pP1dXhsBvXoLFVyLNdTuI+zDG58fOmC2c7KsXXuyo3vjvg==}
+  '@pulumi/aws-native@0.121.0':
+    resolution: {integrity: sha512-xkYCoaODKbFb5JYTXkc8WOL1zcdM1DHjmdxDtEfJGvQ+pKX3O43eLjC3AObFU3SZoFvRwIMUXEb4Y1nYkVNyHQ==}
+
+  '@pulumi/aws@6.51.0':
+    resolution: {integrity: sha512-t2aduFqp8CVZ5axGbBGwKZUjMb8y3YC1iVLgaW5wh/eHW2AYEgz9u+weqkte5c43v16QIfV15bXBy6j/fkVQOg==}
 
   '@pulumi/awsx@2.14.0':
     resolution: {integrity: sha512-vAv4qKT1vvFYDERR+IxjXiSikz20E8fRsWEg1xg5Hc7W9Go2WjsAXx9EgNtZrXr/dCNtHk3lQgOVdNmhrPnfCw==}
@@ -9244,7 +9263,16 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
-  '@pulumi/aws@6.50.1(typescript@5.6.2)':
+  '@pulumi/aws-native@0.121.0(typescript@5.6.2)':
+    dependencies:
+      '@pulumi/pulumi': 3.130.0(typescript@5.6.2)
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
+
+  '@pulumi/aws@6.51.0(typescript@5.6.2)':
     dependencies:
       '@pulumi/pulumi': 3.130.0(typescript@5.6.2)
       builtin-modules: 3.0.0
@@ -9259,7 +9287,7 @@ snapshots:
   '@pulumi/awsx@2.14.0(typescript@5.6.2)':
     dependencies:
       '@aws-sdk/client-ecs': 3.649.0
-      '@pulumi/aws': 6.50.1(typescript@5.6.2)
+      '@pulumi/aws': 6.51.0(typescript@5.6.2)
       '@pulumi/docker': 4.5.5(typescript@5.6.2)
       '@pulumi/pulumi': 3.130.0(typescript@5.6.2)
       '@types/aws-lambda': 8.10.145
