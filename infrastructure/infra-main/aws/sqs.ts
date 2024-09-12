@@ -34,8 +34,9 @@ const DEAD_LETTER_QUEUE = new aws.sqs.Queue('foundation-queue-dlq', {
     messageRetentionSeconds: 60 * 60 * 24 * 14,
 
     // delaySeconds: The number of seconds to delay the message delivery
-    //   --> i.e.: How long to wait before we start processing the DLQ?
-    delaySeconds: 60 * 60 * 3, // 3 hrs
+    //   i.e.: How long to wait before we start processing the DLQ?
+    //   Max: 900 (15 minutes)
+    delaySeconds: 900,
 });
 
 /**
