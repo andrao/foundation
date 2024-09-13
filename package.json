@@ -32,14 +32,13 @@
             "path": "./node_modules/cz-conventional-changelog"
         }
     },
-    "prettier": "@andrao/prettier",
+    "prettier": "@acme/prettier",
     "eslintConfig": {
         "extends": "./node_modules/@andrao/eslint/lib/base.js",
         "root": true
     },
     "devDependencies": {
         "@andrao/eslint": "2.1.0",
-        "@andrao/prettier": "^1.0.2",
         "@andrao/tsconfig": "^1.0.0",
         "@jest/globals": "29.7.0",
         "@playwright/test": "1.46.1",
