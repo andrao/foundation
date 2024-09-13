@@ -42,6 +42,7 @@ jobs:
         name: Create a PlanetScale branch
         needs:
             - validate-migrations
+        if: contains(github.event.pull_request.labels.*.name, 'planetscale-branch')
         environment: staging
         runs-on: ubuntu-latest
         steps:
@@ -67,7 +68,6 @@ jobs:
                     echo "Branch does not exist. Creating."
                     pscale branch create ${{ vars.PLANETSCALE_DATABASE_NAME }} ${{ env.PLANETSCALE_BRANCH_NAME }} --wait --org ${{ vars.PLANETSCALE_ORG_NAME }}
                   fi
-
     apply-migrations:
         name: Apply MySQL migrations to branch
         needs:
@@ -135,7 +135,7 @@ jobs:
 
     delete-branch:
         name: Delete PlanetScale branch
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        if: (github.event_name == 'pull_request' && github.event.action == 'closed') || (github.event_name == 'pull_request' && github.event.action == 'unlabeled' && github.event.label.name == 'planetscale-branch')
         environment: staging
         runs-on: ubuntu-latest
         steps:
