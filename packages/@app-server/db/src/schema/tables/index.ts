@@ -1,11 +1,11 @@
-import { Entry } from './Entry';
-import { Project } from './Project';
+import { Merchant } from './Merchant';
+import { Service } from './Service';
 
 /**
  * @const tables
  * @description Database table map
  */
 export const tables = {
-    Entry,
-    Project,
+    Merchant,
+    Service,
 };

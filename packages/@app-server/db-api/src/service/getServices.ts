@@ -2,15 +2,15 @@ import type { SQL } from '@acme/db';
 import type { IDbApiContext } from '../types';
 
 /**
- * @function getEntries
- * @description Get a list of Entry rows
+ * @function getServices
+ * @description Get a list of Service rows
  */
-export async function getEntries({
+export async function getServices({
     input: { where, limit, orderBy },
     ctx,
 }: {
     input: { where: SQL | undefined; limit?: number; orderBy?: SQL | undefined };
     ctx: Pick<IDbApiContext, 'dbx'>;
 }) {
-    return await ctx.dbx(db => db.query.Entry.findMany({ where, limit, orderBy }));
+    return await ctx.dbx(db => db.query.Service.findMany({ where, limit, orderBy }));
 }

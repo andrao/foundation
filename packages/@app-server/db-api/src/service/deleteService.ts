@@ -3,25 +3,25 @@ import { TRPCError } from '@trpc/server';
 import type { IDbApiContext } from '../types';
 
 /**
- * @function deleteEntry
- * @description Delete an Entry entity
+ * @function deleteService
+ * @description Delete an Service entity
  */
-export async function deleteEntry(
+export async function deleteService(
     input: {
-        entry_id: string;
+        service_id: number;
     },
     ctx: Pick<IDbApiContext, 'dbx' | 'env'>,
 ) {
-    const { entry_id } = input;
+    const { service_id } = input;
 
     /**
      * Soft-delete entity
      */
     const { rowsAffected: n } = await ctx.dbx(db =>
         db
-            .update(t.Entry)
-            .set({ deleted_at: sql`CURRENT_TIMESTAMP`, updated_at: sql`CURRENT_TIMESTAMP` })
-            .where(eq(t.Entry.entry_id, entry_id)),
+            .update(t.Service)
+            .set({ deleted_at: sql`CURRENT_TIMESTAMP` })
+            .where(eq(t.Service.service_id, service_id)),
     );
 
     if (n === 0) throw new TRPCError({ code: 'NOT_FOUND' });
