@@ -10,11 +10,7 @@ export const env = createEnv({
     /**
      * Server-side
      */
-    server: {
-        ANTHROPIC_API_KEY: z.string(),
-        OPENAI_API_KEY: z.string(),
-        TOGETHER_API_KEY: z.string(),
-    },
+    server: {},
 
     /**
      * Client-side
@@ -35,10 +31,6 @@ export const env = createEnv({
      * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
      */
     runtimeEnv: {
-        ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
-        OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-        TOGETHER_API_KEY: process.env.TOGETHER_API_KEY,
-
         NODE_ENV: process.env.NODE_ENV,
         PORT: process.env.PORT,
     },

@@ -8,11 +8,7 @@ import { z } from 'zod';
  * @see https://vercel.com/docs/projects/environment-variables/system-environment-variables for default Vercel env vars
  */
 export const env = createEnv({
-    server: {
-        ANTHROPIC_API_KEY: z.string(),
-        OPENAI_API_KEY: z.string(),
-        TOGETHER_API_KEY: z.string(),
-    },
+    server: {},
     client: {},
 
     /**
@@ -30,10 +26,6 @@ export const env = createEnv({
      * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
      */
     runtimeEnv: {
-        ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
-        OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-        TOGETHER_API_KEY: process.env.TOGETHER_API_KEY,
-
         NODE_ENV: process.env.NODE_ENV,
         PORT: process.env.PORT,
         VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL_ENV,

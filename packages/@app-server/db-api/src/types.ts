@@ -13,8 +13,4 @@ export interface IDbApiContext {
  * @interface IDbApiEnvVars
  * @description Environment variables required for DB API calls
  */
-export interface IDbApiEnvVars {
-    ANTHROPIC_API_KEY: string;
-    OPENAI_API_KEY: string;
-    RUNPOD_API_KEY: string;
-}
+export type IDbApiEnvVars = Record<string, never>;
