@@ -3,7 +3,8 @@
     "type": "module",
     "main": "index.ts",
     "scripts": {
-        "cli": "pnpm with-env pulumi",
+        "cli:production": "pnpm with-env pulumi stack select $npm_package_config_production && pnpm with-env pulumi",
+        "cli:staging": "pnpm with-env pulumi stack select $npm_package_config_staging && pnpm with-env pulumi",
         "format": "prettier --check . --ignore-path ../../.prettierignore",
         "preview:production": "pnpm with-env pulumi preview -s $npm_package_config_production",
         "preview:staging": "pnpm with-env pulumi preview -s $npm_package_config_staging",
