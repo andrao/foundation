@@ -29,8 +29,8 @@ fi
 # ------------------------------
 # Create a new schema for the branch
 if [ "$create_db" = "y" ] || [ "$create_db" = "Y" ]; then
-    printf ". \033[36mcreating database\033[0m\n"
-    mysql --defaults-extra-file=apps/mysql/my.cnf -h 127.0.0.1 -P 7000 -e 'CREATE DATABASE IF NOT EXISTS '"$db_name"';'
+    printf ". \033[36mcreating database %s\033[0m\n" "$db_name"
+    mysql -h 127.0.0.1 -P 7100 -u root -prootpassword -e 'CREATE DATABASE IF NOT EXISTS '"$db_name"';'
     printf "\033[35m└─ Database \033[32m%s\033[0m \033[35mcreated\033[0m\n" "$db_name"
 fi
 
