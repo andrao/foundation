@@ -1,9 +1,15 @@
 'use client';
 
-import { Component, createContext, type ErrorInfo, type PropsWithChildren } from 'react';
+import {
+    Component,
+    createContext,
+    type ErrorInfo,
+    type PropsWithChildren,
+    type ReactElement,
+} from 'react';
 
 type IProps = PropsWithChildren<{
-    fallback: JSX.Element;
+    fallback: ReactElement;
     vercel_env: 'development' | 'preview' | 'production';
 }>;
 

@@ -21,7 +21,7 @@ export interface IKeyCommand {
  * @description Whether user is on a Mac
  */
 const IS_MAC =
-    typeof window !== 'undefined' ? navigator.platform.toUpperCase().includes('MAC') : true;
+    typeof window !== 'undefined' ? navigator.userAgent.toLowerCase().includes('mac') : true;
 
 /**
  * @const wrapVariants

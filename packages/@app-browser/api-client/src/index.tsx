@@ -4,7 +4,7 @@ import type { IAppRouter } from '@acme/api';
 import { transformer } from '@acme/api/transformer';
 import { PATHS } from '@acme/paths';
 import { PORTS } from '@acme/paths/ports.js';
-import { uriJoin } from '@andrao/tools';
+import { uriJoin } from '@andrao/tools/uriJoin';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { loggerLink, unstable_httpBatchStreamLink } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';

@@ -45,7 +45,7 @@ export function EasyTooltip({
     side = 'bottom',
     tabIndex,
 }: React.PropsWithChildren<{
-    content: string | JSX.Element;
+    content: string | React.ReactElement;
     asChild?: boolean;
     className?: string;
     contentClassName?: string;

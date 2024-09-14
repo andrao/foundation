@@ -11,7 +11,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@ui/components/ui/toolt
 import { cn } from '@ui/util';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 
 /**
  * @function SidebarLink
@@ -25,7 +25,7 @@ export function SidebarLink({
     shortcut,
 }: {
     name: string;
-    icon: JSX.Element;
+    icon: ReactElement;
     shortcut: IKeyCommand;
 } & (
     | {

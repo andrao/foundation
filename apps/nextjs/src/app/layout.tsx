@@ -57,7 +57,7 @@ export const viewport: Viewport = {
  * @description Root layout for all pages
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
  */
-export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='en' suppressHydrationWarning>
             <body
