@@ -52,5 +52,33 @@ export function createTable<
     columns: BuildColumns<TableName, ColumnsMap & typeof DEFAULT_COLUMNS, 'mysql'>;
     dialect: 'mysql';
 }> {
-    return nameTable(name, { ...DEFAULT_COLUMNS, ...columns }, extraConfig);
+    return nameTable(name, reorderColumns(columns), extraConfig);
+}
+
+/**
+ * @comment I've experienced a bug when using MySQL $returningId when the DEFAULT_COLUMNS are spread before the input columns.
+ *          The response should contain { [primary_key]: $id }, but instead contains { [first_column_defined]: $id }, paying
+ *          no heed to which column is actually the primary key.
+ * @description This function places the primary key column(s) first in the object
+ */
+function reorderColumns<ColumnsMap extends Record<string, MySqlColumnBuilderBase>>(
+    columns: ColumnsMap,
+) {
+    const cols = { ...DEFAULT_COLUMNS, ...columns };
+    const empty = {} as ColumnsMap & typeof DEFAULT_COLUMNS;
+
+    return Object.entries(cols)
+        .sort((ia, ib) => {
+            const a = ia[1] as unknown as { config: { primaryKey: boolean } };
+            const b = ib[1] as unknown as { config: { primaryKey: boolean } };
+
+            if (a.config.primaryKey) return -1;
+            if (b.config.primaryKey) return 1;
+
+            return 0;
+        })
+        .reduce<ColumnsMap & typeof DEFAULT_COLUMNS>(
+            (acc, item) => ({ ...acc, [item[0]]: item[1] }),
+            empty,
+        );
 }
