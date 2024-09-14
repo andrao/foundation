@@ -3,7 +3,7 @@
 import { WORKSPACE_EXTERNALS_PLUGIN } from '@acme/esbuild-workspace-externals';
 import { build } from 'esbuild';
 // Validate env on build
-import './src/env';
+import '../src/env';
 
 await build({
     allowOverwrite: true,
