@@ -12,6 +12,7 @@
         "jest": "pnpm run -C ../.. jest",
         "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
         "lint": "eslint .",
+        "start": "node dist/index.js",
         "test": "pnpm run jest $PWD",
         "test:i": "pnpm run jest:i $PWD",
         "typecheck": "tsc --noEmit",
@@ -20,7 +21,6 @@
     "dependencies": {
         "@acme/constants": "workspace:*",
         "@acme/paths": "workspace:*",
-        "@andrao/tools": "1.1.0",
         "@t3-oss/env-nextjs": "0.11.1",
         "express": "4.19.2",
         "zod": "3.23.8"

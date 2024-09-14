@@ -33,5 +33,5 @@ app.use(
  * Start server & listen on port
  */
 export const server = app.listen(env.PORT, () => {
-    console.log(`Server is running on port ${env.PORT}`);
+    console.log(`apps/api-trpc server is running on port ${env.PORT}`);
 });

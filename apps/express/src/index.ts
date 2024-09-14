@@ -19,5 +19,5 @@ app.get(PATHS.home, (req, res) => {
  * Start server & listen on port
  */
 export const server = app.listen(env.PORT, () => {
-    console.log(`Server is running on port ${env.PORT}`);
+    console.log(`apps/express server is running on port ${env.PORT}`);
 });
