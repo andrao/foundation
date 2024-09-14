@@ -1,0 +1,41 @@
+services:
+    base:
+        profiles: ['build']
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: base
+
+    merchant-site:
+        profiles: ['build']
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: merchant-site
+        network_mode: host
+
+    express:
+        profiles: ['deploy']
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: express
+        ports:
+            - '8000:8000'
+
+    mysql:
+        profiles: ['dev']
+        image: mysql:8.0
+        restart: always
+        ports:
+            - '7100:3306'
+        environment:
+            - MYSQL_ROOT_PASSWORD=rootpassword
+            - MYSQL_DATABASE=mydb
+            - MYSQL_USER=myuser
+            - MYSQL_PASSWORD=mypassword
+        volumes:
+            - mysql_data:/var/lib/mysql
+
+volumes:
+    mysql_data:

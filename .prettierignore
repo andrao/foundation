@@ -13,8 +13,9 @@ pnpm-lock.yaml
 
 # dependencies
 node_modules
-.pnp
-.pnp.js
+
+# build
+dist/
 
 # testing
 coverage
@@ -22,21 +23,18 @@ coverage
 # next.js
 .next/
 out/
-next-env.d.ts
 
-# nitro
-.nitro/
-.output/
+# astro
+.astro/
 
 # expo
 .expo/
-dist/
 expo-env.d.ts
 apps/expo/.gitignore
 apps/expo/ios
 
 # production
-build
+build/
 
 # misc
 .DS_Store
@@ -50,10 +48,9 @@ yarn-error.log*
 
 # local env files
 .env
+.env.*
 .env*.local
-
-# vercel
-.vercel
+!.env.example
 
 # typescript
 *.tsbuildinfo
@@ -64,7 +61,16 @@ yarn-error.log*
 # jest
 .jest
 
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
 
+# python
+__pycache__
+venv
 
-/.nx/cache
-/.nx/workspace-data
+# nx
+.nx/cache
+.nx/workspace-data

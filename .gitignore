@@ -2,8 +2,9 @@
 
 # dependencies
 node_modules
-.pnp
-.pnp.js
+
+# build
+dist/
 
 # testing
 coverage
@@ -12,19 +13,17 @@ coverage
 .next/
 out/
 
-# nitro
-.nitro/
-.output/
+# astro
+.astro/
 
 # expo
 .expo/
-dist/
 expo-env.d.ts
 apps/expo/.gitignore
 apps/expo/ios
 
 # production
-build
+build/
 
 # misc
 .DS_Store
@@ -42,9 +41,6 @@ yarn-error.log*
 .env*.local
 !.env.example
 
-# vercel
-.vercel
-
 # typescript
 *.tsbuildinfo
 
@@ -53,9 +49,6 @@ yarn-error.log*
 
 # jest
 .jest
-
-# LanceDB
-.lancedb
 
 # Playwright
 /test-results/
