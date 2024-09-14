@@ -7,10 +7,10 @@ import type { IDbApiContext } from '../types';
  * @description Get a single Service
  */
 export async function getService({
-    input: { service_id, where },
+    service_id,
+    where,
     ctx,
-}: {
-    input: { service_id: number; where?: never } | { service_id?: never; where: SQL | undefined };
+}: ({ service_id: number; where?: never } | { service_id?: never; where: SQL | undefined }) & {
     ctx: Pick<IDbApiContext, 'dbx'>;
 }) {
     const e = await ctx.dbx(db =>

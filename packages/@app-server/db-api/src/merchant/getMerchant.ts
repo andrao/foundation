@@ -7,10 +7,10 @@ import type { IDbApiContext } from '../types';
  * @description Get a single Merchant
  */
 export async function getMerchant({
-    input: { merchant_id, where },
+    merchant_id,
+    where,
     ctx,
-}: {
-    input: { merchant_id: number; where?: never } | { merchant_id?: never; where: SQL | undefined };
+}: ({ merchant_id: number; where?: never } | { merchant_id?: never; where: SQL | undefined }) & {
     ctx: Pick<IDbApiContext, 'dbx'>;
 }) {
     const e = await ctx.dbx(db =>

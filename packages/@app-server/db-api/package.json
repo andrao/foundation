@@ -19,7 +19,6 @@
     "dependencies": {
         "@acme/db": "workspace:*",
         "@andrao/async": "1.0.0",
-        "@andrao/tools": "1.1.0",
         "@trpc/server": "next",
         "zod": "3.23.8"
     }
