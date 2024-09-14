@@ -17,6 +17,7 @@
         "migrate:apply:ci": "pnpm with-env drizzle-kit migrate --config=$PWD/drizzle.config.ts",
         "migrate:generate": "pnpm with-env drizzle-kit generate --config=$PWD/drizzle.config.ts",
         "migrate:generate-new": "pnpm migrate:generate --custom",
+        "push:local": "USE_LOCAL_MYSQL=1 pnpm with-env drizzle-kit push --config=$PWD/drizzle.config.ts",
         "studio": "pnpm with-env drizzle-kit studio",
         "test": "pnpm run jest $PWD",
         "test:i": "pnpm run jest:i $PWD",
@@ -25,6 +26,7 @@
     },
     "dependencies": {
         "@acme/constants": "workspace:*",
+        "@acme/paths": "workspace:*",
         "@andrao/tools": "1.1.0",
         "@neondatabase/serverless": "0.9.4",
         "@planetscale/database": "1.19.0",

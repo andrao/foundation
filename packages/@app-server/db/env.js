@@ -7,6 +7,12 @@ import { z } from 'zod';
  */
 export const env = createEnv({
     server: {
+        NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+
+        // Local dev
+        IS_ASTRO_BUILD: z.string().optional(),
+        USE_LOCAL_MYSQL: z.string().optional(),
+
         // Set in .env
         PLANETSCALE_HOST: z.string().optional(),
         PLANETSCALE_USERNAME: z.string().optional(),
@@ -20,9 +26,12 @@ export const env = createEnv({
      * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
      */
     runtimeEnv: {
+        IS_ASTRO_BUILD: process.env.IS_ASTRO_BUILD,
+        NODE_ENV: process.env.NODE_ENV,
         PLANETSCALE_HOST: process.env.PLANETSCALE_HOST,
         PLANETSCALE_USERNAME: process.env.PLANETSCALE_USERNAME,
         PLANETSCALE_PASSWORD: process.env.PLANETSCALE_PASSWORD,
         PLANETSCALE_DATABASE_URL: process.env.PLANETSCALE_DATABASE_URL,
+        USE_LOCAL_MYSQL: process.env.USE_LOCAL_MYSQL,
     },
 });

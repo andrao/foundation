@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-types */
 
 import type { Assume, Column, Equal, Simplify, Table } from 'drizzle-orm';
 import type { z } from 'zod';

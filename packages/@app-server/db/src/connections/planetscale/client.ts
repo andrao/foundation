@@ -12,11 +12,6 @@ import { getPlanetScaleConnectionParams, getPlanetScaleDbCredentials } from './p
 export type IPlanetScaleServerlessClient = PlanetScaleDatabase<typeof schema>;
 
 /**
- * @const connection
- * @description Establish connection to the database
- */
-
-/**
  * @var PLANETSCALE_CLIENT
  * @description Lazy-init PlanetScale client
  */
