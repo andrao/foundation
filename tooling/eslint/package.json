@@ -1,0 +1,47 @@
+{
+    "name": "@acme/eslint",
+    "version": "0.1.0",
+    "files": [
+        "./lib/base.js",
+        "./lib/nextjs.js",
+        "./lib/react.js"
+    ],
+    "scripts": {
+        "format": "prettier --check . --ignore-path ../../.prettierignore",
+        "jest": "pnpm run -C ../.. jest",
+        "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
+        "lint": "eslint .",
+        "test": "pnpm run jest $PWD",
+        "test:i": "pnpm run jest:i $PWD",
+        "typecheck": "tsc --noEmit"
+    },
+    "eslintConfig": {
+        "extends": [
+            "./lib/base.js"
+        ],
+        "root": true
+    },
+    "dependencies": {
+        "@next/eslint-plugin-next": "14.2.11",
+        "@tanstack/eslint-plugin-query": "5.56.1",
+        "@typescript-eslint/eslint-plugin": "8.5.0",
+        "@typescript-eslint/parser": "8.5.0",
+        "eslint": "8.57.0",
+        "eslint-config-prettier": "9.1.0",
+        "eslint-config-turbo": "2.1.2",
+        "eslint-import-resolver-typescript": "3.6.3",
+        "eslint-plugin-astro": "1.2.4",
+        "eslint-plugin-import": "2.30.0",
+        "eslint-plugin-json": "4.0.1",
+        "eslint-plugin-jsx-a11y": "6.10.0",
+        "eslint-plugin-prettier": "5.2.1",
+        "eslint-plugin-react": "7.36.1",
+        "eslint-plugin-react-hooks": "4.6.2",
+        "eslint-plugin-react-refresh": "0.4.11",
+        "eslint-plugin-storybook": "0.8.0",
+        "eslint-plugin-unicorn": "55.0.0"
+    },
+    "devDependencies": {
+        "@types/eslint": "9.6.1"
+    }
+}
