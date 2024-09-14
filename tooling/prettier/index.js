@@ -17,6 +17,12 @@ const config = {
     tabWidth: 4,
     overrides: [
         {
+            files: '*.astro',
+            options: {
+                parser: 'astro',
+            },
+        },
+        {
             files: '*.css',
             options: { tabWidth: 2 },
         },
@@ -27,6 +33,7 @@ const config = {
     ],
     plugins: [
         '@ianvs/prettier-plugin-sort-imports',
+        'prettier-plugin-astro',
         'prettier-plugin-packagejson',
         'prettier-plugin-sh',
         'prettier-plugin-tailwindcss',
