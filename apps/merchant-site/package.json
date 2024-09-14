@@ -1,0 +1,35 @@
+{
+    "name": "merchant-site",
+    "version": "0.1.0",
+    "module": "dist/index.js",
+    "scripts": {
+        "astro": "astro",
+        "build": "astro check && IS_ASTRO_BUILD=1 astro build",
+        "clean": "git clean -xdf .next .turbo node_modules",
+        "dev": "IS_ASTRO_BUILD=1 astro dev",
+        "format": "prettier --check . --ignore-path ../../.prettierignore",
+        "jest": "pnpm run -C ../.. jest",
+        "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
+        "lint": "eslint .",
+        "package": "pnpm -F merchant-site deploy build",
+        "preview": "astro preview",
+        "test": "pnpm run jest $PWD",
+        "test:i": "pnpm run jest:i $PWD",
+        "typecheck": "tsc --noEmit",
+        "with-env": "dotenv -e ../../.env --"
+    },
+    "dependencies": {
+        "@acme/db": "workspace:*",
+        "@acme/db-api": "workspace:*",
+        "@astrojs/check": "0.9.3",
+        "@astrojs/react": "3.6.2",
+        "@t3-oss/env-nextjs": "0.11.1",
+        "astro": "4.15.4",
+        "react": "18.3.1",
+        "react-dom": "18.3.1",
+        "zod": "3.23.8"
+    },
+    "devDependencies": {
+        "@astrojs/ts-plugin": "1.10.2"
+    }
+}
