@@ -13,8 +13,7 @@
             "cache": true,
             "dependsOn": ["^build"],
             "outputs": [
-                "{workspaceRoot}/.next/**",
-                "!{workspaceRoot}/.next/cache/**",
+                "{workspaceRoot}/.next/!(cache)/**",
                 "{workspaceRoot}/next-env.d.ts",
                 "{workspaceRoot}/.expo/**",
                 "{workspaceRoot}/.output/**",
