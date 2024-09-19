@@ -1,8 +1,8 @@
 # --------------
 # @see https://pnpm.io/docker
 # --------------
-
-FROM --platform=linux/amd64 node:20-slim AS base
+ARG PLATFORM=linux/arm64
+FROM --platform=${PLATFORM} node:20-slim AS base
 
 # Linux dependencies
 RUN apt-get -y update && apt-get -y install curl zip
@@ -21,10 +21,8 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 # Install pnpm using packageManager version from package.json
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-
 WORKDIR /usr/foundation
 COPY package.json .
-
 RUN corepack enable pnpm && corepack install
 
 # Fetch dependencies
@@ -69,11 +67,15 @@ CMD [ "npm", "start" ]
 # Build apps/merchant-site
 # -------
 FROM base AS merchant-site
-ENV IS_DOCKER_BUILD=1
 
 # Build static pages
 RUN pnpm -F merchant-site build
 WORKDIR /usr/foundation/apps/merchant-site/dist
 
 # Upload to S3
-RUN aws s3 cp . s3://my-bucket/ --recursive
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+
+CMD ["pnpm", "-F", "merchant-site", "s3:sync"]

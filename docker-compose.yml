@@ -5,6 +5,8 @@ services:
             context: .
             dockerfile: Dockerfile
             target: base
+            args:
+                PLATFORM: ${DOCKER_PLATFORM:-linux/arm64}
 
     merchant-site:
         profiles: ['build']
@@ -13,13 +15,10 @@ services:
             dockerfile: Dockerfile
             target: merchant-site
             network: host
-
-    lambda:
-        profiles: ['build']
-        build:
-            context: .
-            dockerfile: Dockerfile
-            target: lambda
+            args:
+                PLATFORM: ${DOCKER_PLATFORM:-linux/arm64}
+                AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+                AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
 
     express:
         profiles: ['deploy']
@@ -27,6 +26,8 @@ services:
             context: .
             dockerfile: Dockerfile
             target: express
+            args:
+                PLATFORM: ${DOCKER_PLATFORM:-linux/arm64}
         ports:
             - '8000:8000'
 
@@ -35,12 +36,12 @@ services:
         image: mysql:8.0
         restart: always
         ports:
-            - '7102:3306'
+            - '${MYSQL_PORT:-7102}:3306'
         environment:
-            - MYSQL_ROOT_PASSWORD=rootpassword
-            - MYSQL_DATABASE=mydb
-            - MYSQL_USER=myuser
-            - MYSQL_PASSWORD=mypassword
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE:-mydb}
+            - MYSQL_USER=${MYSQL_USER:-myuser}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         volumes:
             - mysql_data:/var/lib/mysql
 
