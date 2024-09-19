@@ -13,6 +13,10 @@ const ORIGIN_ACCESS_IDENTITY = new aws.cloudfront.OriginAccessIdentity(
 );
 
 /**
+ * @todo Add S3 bucket Origin Access Control, which restricts S3 access to a given CloudFront distribution
+ */
+
+/**
  * @const BUCKET_CDN
  * @description CloudFront distribution for the S3 bucket holding assets
  */
