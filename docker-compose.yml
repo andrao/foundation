@@ -12,7 +12,14 @@ services:
             context: .
             dockerfile: Dockerfile
             target: merchant-site
-        network_mode: host
+            network: host
+
+    lambda:
+        profiles: ['build']
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: lambda
 
     express:
         profiles: ['deploy']
@@ -28,7 +35,7 @@ services:
         image: mysql:8.0
         restart: always
         ports:
-            - '7100:3306'
+            - '7102:3306'
         environment:
             - MYSQL_ROOT_PASSWORD=rootpassword
             - MYSQL_DATABASE=mydb

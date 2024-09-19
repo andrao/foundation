@@ -24,6 +24,7 @@ export const env = createEnv({
      * - Node defaults, environment
      */
     shared: {
+        IS_BUILD: z.boolean(),
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     },
 
@@ -31,6 +32,7 @@ export const env = createEnv({
      * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
      */
     runtimeEnv: {
+        IS_BUILD: process.env.NODE_ENV === 'production',
         MERCHANT_ID: process.env.MERCHANT_ID,
         NODE_ENV: process.env.NODE_ENV,
     },

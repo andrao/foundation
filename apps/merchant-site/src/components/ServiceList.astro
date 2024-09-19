@@ -1,6 +1,7 @@
 ---
 import { getMerchantServices } from '@acme/db-api';
 import { ctx } from '~/ctx';
+import { getServiceHref } from '~/util/getServiceHref';
 import Card from './Card.astro';
 
 interface Props {
@@ -9,26 +10,21 @@ interface Props {
 
 const { merchant_id } = Astro.props;
 
-const services = await getMerchantServices({ merchant_id, ctx });
+const services = await getMerchantServices({
+    merchant_id,
+    columns: { service_id: true, name: true, description: true },
+    ctx,
+});
 ---
 
-<ul role='list' class='link-card-grid'>
+<ul role='list' class='grid-cols-autofit grid gap-8 p-0'>
     {
         services.map(service => (
             <Card
-                href='https://docs.astro.build/'
+                href={getServiceHref({ merchant_id, service_name: service.name })}
                 title={service.name}
-                body={service.description ?? ``}
+                body={service.description ?? `A service that we do.`}
             />
         ))
     }
 </ul>
-
-<style>
-    .link-card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-        gap: 2rem;
-        padding: 0;
-    }
-</style>

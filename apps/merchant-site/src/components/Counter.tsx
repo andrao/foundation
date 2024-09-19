@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 function Button({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
     return (
-        <button onClick={onClick} style={{ padding: '10px 20px', margin: '5px' }}>
+        <button
+            onClick={onClick}
+            className='m-1.5 rounded-md bg-primary px-3 py-1.5 text-primary-foreground hover:bg-primary/90'
+        >
             {children}
         </button>
     );
@@ -12,7 +15,7 @@ export function Counter() {
     const [count, setCount] = useState(0);
 
     return (
-        <div>
+        <div className='mt-4 rounded-md border p-4'>
             <h2>Count: {count}</h2>
             <Button onClick={() => setCount(prevCount => prevCount + 1)}>Increment</Button>
             <Button onClick={() => setCount(prevCount => prevCount - 1)}>Decrement</Button>

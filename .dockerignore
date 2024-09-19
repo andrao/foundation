@@ -3,6 +3,8 @@
 .git
 .gitignore
 .husky
+Dockerfile
+docker-compose.yml
 
 # ------------
 # Modified from .gitignore

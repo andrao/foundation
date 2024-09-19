@@ -1,0 +1,38 @@
+---
+import { Counter } from '~/components/Counter';
+import ServiceList from '~/components/ServiceList.astro';
+import Layout from '~/layouts/Layout.astro';
+import { getStaticMerchants } from '~/util/getStaticMerchants';
+
+// Need to explicitly define props type to avoid lint error
+type Props = Awaited<ReturnType<typeof getStaticPaths>>[number]['props'];
+
+/**
+ * Get path parameters
+ */
+export async function getStaticPaths() {
+    const merchants = await getStaticMerchants({ columns: { merchant_id: true, name: true } });
+
+    return merchants.map(m => ({ params: { merchant_id: m.merchant_id }, props: { merchant: m } }));
+}
+
+/**
+ * Render page
+ */
+const merchant_id = Astro.params.merchant_id;
+const { merchant } = Astro.props;
+---
+
+<Layout title={merchant.name}>
+    <main class='mx-auto w-full max-w-3xl p-4 text-xl leading-relaxed text-white'>
+        <h1
+            class='bg-300% mb-8 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text bg-center text-center text-6xl font-bold leading-normal text-transparent'
+        >
+            {merchant.name}
+        </h1>
+
+        <ServiceList merchant_id={merchant_id} />
+
+        <Counter client:load />
+    </main>
+</Layout>

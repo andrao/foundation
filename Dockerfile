@@ -2,20 +2,29 @@
 # @see https://pnpm.io/docker
 # --------------
 
-FROM node:20-slim AS base
+FROM --platform=linux/amd64 node:20-slim AS base
 
-# Linux dependencies, Pulumi CLI
+# Linux dependencies
 RUN apt-get -y update && apt-get -y install curl zip
+
+# Pulumi CLI
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="/root/.pulumi/bin:$PATH"
 
-# Set pnpm env vars for store cache
+# AWS CLI
+WORKDIR /usr
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install \
+    && rm -rf aws awscliv2.zip
+
+# Install pnpm using packageManager version from package.json
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
-# Install pnpm using packageManager version from package.json
-WORKDIR /usr/src/app
+WORKDIR /usr/foundation
 COPY package.json .
+
 RUN corepack enable pnpm && corepack install
 
 # Fetch dependencies
@@ -43,7 +52,7 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store rm -rf node_modules && pnpm in
 # RUN pnpm deploy --filter=merchant-site --prod /prod/merchant-site
 
 # -------
-# apps/express
+# Run apps/express
 # -------
 FROM base AS express
 
@@ -60,12 +69,11 @@ CMD [ "npm", "start" ]
 # Build apps/merchant-site
 # -------
 FROM base AS merchant-site
-# RUN pnpm deploy --filter=merchant-site --prod /prod/merchant-site
-# COPY --from=build /prod/merchant-site /prod/merchant-site
-# WORKDIR /prod/merchant-site
-# ENV PORT=8001
-# EXPOSE $PORT
-
 ENV IS_DOCKER_BUILD=1
 
-CMD [ "pnpm", "--filter=merchant-site", "build" ]
+# Build static pages
+RUN pnpm -F merchant-site build
+WORKDIR /usr/foundation/apps/merchant-site/dist
+
+# Upload to S3
+RUN aws s3 cp . s3://my-bucket/ --recursive
