@@ -1,4 +1,4 @@
-import { APP_ROUTER, createTRPCContext } from '@acme/api';
+import { APP_ROUTER, createTRPCContext } from '@acme/basic-api';
 import { PATHS } from '@acme/paths';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { env } from '~/env';

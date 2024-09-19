@@ -1,4 +1,4 @@
-import { APP_ROUTER } from '@acme/api';
+import { APP_ROUTER } from '@acme/basic-api';
 import { dbx } from '@acme/db';
 import { PATHS } from '@acme/paths';
 import * as trpcExpress from '@trpc/server/adapters/express';

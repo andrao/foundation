@@ -5,7 +5,7 @@
         "paths": {
             "/*": ["./public/*"],
             "~/*": ["./src/*"],
-            "@ui/*": ["../../packages/@app-browser/ui/src/*"]
+            "@ui/*": ["../../packages/core/browser/ui/src/*"]
         },
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
     },

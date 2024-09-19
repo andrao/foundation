@@ -1,4 +1,4 @@
-import { TRPCReactProvider } from '@acme/api-client';
+import { TRPCReactProvider } from '@acme/basic-api-client';
 import type { PropsWithChildren } from 'react';
 import { env } from './env';
 

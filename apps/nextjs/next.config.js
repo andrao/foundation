@@ -16,7 +16,7 @@ const config = {
     reactStrictMode: true,
 
     /** Enable hot-reloading for local packages */
-    transpilePackages: ['@acme/constants', '@acme/paths', '@acme/ui'],
+    transpilePackages: ['@acme/infra-constants', '@acme/paths', '@acme/ui'],
 
     /** Linting and typechecking are taken care of by CI */
     eslint: { ignoreDuringBuilds: true },

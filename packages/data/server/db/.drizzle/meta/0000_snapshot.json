@@ -1,0 +1,171 @@
+{
+    "version": "5",
+    "dialect": "mysql",
+    "id": "00aef7c2-da9b-4872-981c-ed2f9a10ef88",
+    "prevId": "00000000-0000-0000-0000-000000000000",
+    "tables": {
+        "entry": {
+            "name": "entry",
+            "columns": {
+                "created_at": {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": "CURRENT_TIMESTAMP"
+                },
+                "updated_at": {
+                    "name": "updated_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": "CURRENT_TIMESTAMP"
+                },
+                "deleted_at": {
+                    "name": "deleted_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                },
+                "entry_id": {
+                    "name": "entry_id",
+                    "type": "varchar(36)",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "project_id": {
+                    "name": "project_id",
+                    "type": "varchar(36)",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "status": {
+                    "name": "status",
+                    "type": "enum('unprocessed','processed')",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": "'unprocessed'"
+                },
+                "org_id": {
+                    "name": "org_id",
+                    "type": "varchar(36)",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                },
+                "user_id": {
+                    "name": "user_id",
+                    "type": "varchar(36)",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                }
+            },
+            "indexes": {
+                "idx_org_id": {
+                    "name": "idx_org_id",
+                    "columns": ["org_id"],
+                    "isUnique": false
+                },
+                "idx_user_id": {
+                    "name": "idx_user_id",
+                    "columns": ["user_id"],
+                    "isUnique": false
+                },
+                "idx_project_id": {
+                    "name": "idx_project_id",
+                    "columns": ["project_id"],
+                    "isUnique": false
+                }
+            },
+            "foreignKeys": {},
+            "compositePrimaryKeys": {
+                "entry_entry_id": {
+                    "name": "entry_entry_id",
+                    "columns": ["entry_id"]
+                }
+            },
+            "uniqueConstraints": {}
+        },
+        "project": {
+            "name": "project",
+            "columns": {
+                "created_at": {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": "CURRENT_TIMESTAMP"
+                },
+                "updated_at": {
+                    "name": "updated_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": "CURRENT_TIMESTAMP"
+                },
+                "deleted_at": {
+                    "name": "deleted_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                },
+                "project_id": {
+                    "name": "project_id",
+                    "type": "varchar(36)",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "name": {
+                    "name": "name",
+                    "type": "varchar(255)",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "org_id": {
+                    "name": "org_id",
+                    "type": "varchar(36)",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                },
+                "user_id": {
+                    "name": "user_id",
+                    "type": "varchar(36)",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                }
+            },
+            "indexes": {},
+            "foreignKeys": {},
+            "compositePrimaryKeys": {
+                "project_project_id": {
+                    "name": "project_project_id",
+                    "columns": ["project_id"]
+                }
+            },
+            "uniqueConstraints": {}
+        }
+    },
+    "_meta": {
+        "schemas": {},
+        "tables": {},
+        "columns": {}
+    },
+    "internal": {
+        "tables": {},
+        "indexes": {}
+    }
+}

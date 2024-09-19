@@ -1,0 +1,45 @@
+{
+    "name": "@acme/db",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "scripts": {
+        "clean": "rm -rf .turbo node_modules",
+        "drizzle-kit": "pnpm with-env drizzle-kit",
+        "format": "prettier --check . --ignore-path ../../../.prettierignore",
+        "jest": "pnpm with-env pnpm run -C ../../.. jest",
+        "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",
+        "lint": "eslint .",
+        "migrate:apply": "pnpm run migrate:generate && pnpm run migrate:apply:ci",
+        "migrate:apply:ci": "pnpm with-env drizzle-kit migrate --config=$PWD/drizzle.config.ts",
+        "migrate:generate": "pnpm with-env drizzle-kit generate --config=$PWD/drizzle.config.ts",
+        "migrate:generate-new": "pnpm migrate:generate --custom",
+        "push:local": "USE_LOCAL_MYSQL=1 pnpm with-env drizzle-kit push --config=$PWD/drizzle.config.ts",
+        "studio": "pnpm with-env drizzle-kit studio",
+        "test": "pnpm run jest $PWD",
+        "test:i": "pnpm run jest:i $PWD",
+        "typecheck": "tsc --noEmit",
+        "with-env": "dotenv -e ../../../.env --"
+    },
+    "dependencies": {
+        "@acme/infra-constants": "workspace:*",
+        "@acme/paths": "workspace:*",
+        "@andrao/tools": "1.1.0",
+        "@neondatabase/serverless": "0.9.4",
+        "@planetscale/database": "1.19.0",
+        "@t3-oss/env-nextjs": "0.11.1",
+        "drizzle-orm": "0.33.0",
+        "drizzle-zod": "0.5.1",
+        "mysql2": "3.11.0",
+        "zod": "3.23.8"
+    },
+    "devDependencies": {
+        "dotenv-cli": "7.4.2",
+        "drizzle-kit": "0.24.2",
+        "pg": "8.12.0",
+        "tsx": "4.16.5"
+    }
+}

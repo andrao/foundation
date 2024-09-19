@@ -25,7 +25,7 @@
         "root": true
     },
     "dependencies": {
-        "@acme/api-client": "workspace:*",
+        "@acme/basic-api-client": "workspace:*",
         "@acme/paths": "workspace:*",
         "@t3-oss/env-nextjs": "0.11.1",
         "react": "18.3.1",

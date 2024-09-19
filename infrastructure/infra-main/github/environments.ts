@@ -1,4 +1,4 @@
-import { DB_NAME } from '@acme/constants';
+import { DB_NAME } from '@acme/infra-constants/planetscale';
 import * as github from '@pulumi/github';
 import * as pulumi from '@pulumi/pulumi';
 

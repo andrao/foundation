@@ -18,7 +18,7 @@
         "with-env": "dotenv -e ../../.env --"
     },
     "dependencies": {
-        "@acme/constants": "workspace:*",
+        "@acme/infra-constants": "workspace:*",
         "@acme/paths": "workspace:*",
         "@t3-oss/env-nextjs": "0.11.1",
         "express": "4.19.2",

@@ -1,7 +1,8 @@
 packages:
     - apps/*
-    - packages/@app-browser/*
-    - packages/@app-global/*
-    - packages/@app-server/*
+    - packages/app/*/*
+    - packages/core/*/*
+    - packages/data/*/*
+    - packages/domains/*/*/*
     - infrastructure/*
     - tooling/*

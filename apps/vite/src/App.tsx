@@ -1,4 +1,4 @@
-import { api } from '@acme/api-client';
+import { api } from '@acme/basic-api-client';
 import { useEffect, useState } from 'react';
 import './App.css';
 import viteLogo from '/vite.svg';

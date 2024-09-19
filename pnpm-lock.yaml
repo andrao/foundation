@@ -65,18 +65,18 @@ importers:
 
   apps/api-trpc:
     dependencies:
-      '@acme/api':
+      '@acme/basic-api':
         specifier: workspace:*
-        version: link:../../packages/@app-server/api
-      '@acme/constants':
-        specifier: workspace:*
-        version: link:../../packages/@app-global/constants
+        version: link:../../packages/domains/basic/server/api
       '@acme/db':
         specifier: workspace:*
-        version: link:../../packages/@app-server/db
+        version: link:../../packages/data/server/db
+      '@acme/infra-constants':
+        specifier: workspace:*
+        version: link:../../infrastructure/infra-constants
       '@acme/paths':
         specifier: workspace:*
-        version: link:../../packages/@app-global/paths
+        version: link:../../packages/app/global/paths
       '@t3-oss/env-nextjs':
         specifier: 0.11.1
         version: 0.11.1(typescript@5.6.2)(zod@3.23.8)
@@ -114,12 +114,12 @@ importers:
 
   apps/express:
     dependencies:
-      '@acme/constants':
+      '@acme/infra-constants':
         specifier: workspace:*
-        version: link:../../packages/@app-global/constants
+        version: link:../../infrastructure/infra-constants
       '@acme/paths':
         specifier: workspace:*
-        version: link:../../packages/@app-global/paths
+        version: link:../../packages/app/global/paths
       '@t3-oss/env-nextjs':
         specifier: 0.11.1
         version: 0.11.1(typescript@5.6.2)(zod@3.23.8)
@@ -153,10 +153,10 @@ importers:
     dependencies:
       '@acme/db':
         specifier: workspace:*
-        version: link:../../packages/@app-server/db
+        version: link:../../packages/data/server/db
       '@acme/db-api':
         specifier: workspace:*
-        version: link:../../packages/@app-server/db-api
+        version: link:../../packages/data/server/db-api
       '@astrojs/check':
         specifier: 0.9.3
         version: 0.9.3(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.6.2)
@@ -185,12 +185,12 @@ importers:
 
   apps/merchant-site-static:
     dependencies:
-      '@acme/constants':
+      '@acme/infra-constants':
         specifier: workspace:*
-        version: link:../../packages/@app-global/constants
+        version: link:../../infrastructure/infra-constants
       '@acme/paths':
         specifier: workspace:*
-        version: link:../../packages/@app-global/paths
+        version: link:../../packages/app/global/paths
       '@t3-oss/env-nextjs':
         specifier: 0.11.1
         version: 0.11.1(typescript@5.6.2)(zod@3.23.8)
@@ -222,24 +222,24 @@ importers:
 
   apps/nextjs:
     dependencies:
-      '@acme/api':
+      '@acme/basic-api':
         specifier: workspace:*
-        version: link:../../packages/@app-server/api
-      '@acme/constants':
+        version: link:../../packages/domains/basic/server/api
+      '@acme/infra-constants':
         specifier: workspace:*
-        version: link:../../packages/@app-global/constants
+        version: link:../../infrastructure/infra-constants
       '@acme/paths':
         specifier: workspace:*
-        version: link:../../packages/@app-global/paths
+        version: link:../../packages/app/global/paths
       '@acme/ui':
         specifier: workspace:*
-        version: link:../../packages/@app-browser/ui
+        version: link:../../packages/core/browser/ui
       '@andrao/tailwind':
         specifier: 1.2.0
         version: 1.2.0
       '@clerk/nextjs':
         specifier: 4.29.10
-        version: 4.29.10(next@14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.29.10(next@14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@t3-oss/env-nextjs':
         specifier: 0.11.1
         version: 0.11.1(typescript@5.6.2)(zod@3.23.8)
@@ -251,10 +251,10 @@ importers:
         version: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       geist:
         specifier: 1.3.0
-        version: 1.3.0(next@14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))
+        version: 1.3.0(next@14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))
       next:
-        specifier: 14.2.11
-        version: 14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
+        specifier: 14.2.12
+        version: 14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
       next-themes:
         specifier: 0.3.0
         version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -270,12 +270,12 @@ importers:
 
   apps/vite:
     dependencies:
-      '@acme/api-client':
+      '@acme/basic-api-client':
         specifier: workspace:*
-        version: link:../../packages/@app-browser/api-client
+        version: link:../../packages/domains/basic/browser/api-client
       '@acme/paths':
         specifier: workspace:*
-        version: link:../../packages/@app-global/paths
+        version: link:../../packages/app/global/paths
       '@t3-oss/env-nextjs':
         specifier: 0.11.1
         version: 0.11.1(typescript@5.6.2)(zod@3.23.8)
@@ -315,11 +315,13 @@ importers:
         specifier: 4.16.5
         version: 4.16.5
 
+  infrastructure/infra-constants: {}
+
   infrastructure/infra-main:
     dependencies:
-      '@acme/constants':
+      '@acme/infra-constants':
         specifier: workspace:*
-        version: link:../../packages/@app-global/constants
+        version: link:../infra-constants
       '@pulumi/aws':
         specifier: 6.51.0
         version: 6.51.0(typescript@5.6.2)
@@ -335,42 +337,17 @@ importers:
       '@pulumi/pulumi':
         specifier: 3.130.0
         version: 3.130.0(typescript@5.6.2)
+      cloudfront:
+        specifier: 0.4.1
+        version: 0.4.1
     devDependencies:
       tsx:
         specifier: 4.16.5
         version: 4.16.5
 
-  packages/@app-browser/api-client:
-    dependencies:
-      '@acme/api':
-        specifier: workspace:*
-        version: link:../../@app-server/api
-      '@acme/paths':
-        specifier: workspace:*
-        version: link:../../@app-global/paths
-      '@andrao/tools':
-        specifier: 1.1.0
-        version: 1.1.0
-      '@tanstack/react-query':
-        specifier: 5.51.23
-        version: 5.51.23(react@18.3.1)
-      '@trpc/client':
-        specifier: next
-        version: 11.0.0-rc.502(@trpc/server@11.0.0-rc.502)
-      '@trpc/react-query':
-        specifier: next
-        version: 11.0.0-rc.502(@tanstack/react-query@5.51.23(react@18.3.1))(@trpc/client@11.0.0-rc.502(@trpc/server@11.0.0-rc.502))(@trpc/server@11.0.0-rc.502)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@trpc/server':
-        specifier: next
-        version: 11.0.0-rc.502
-      react:
-        specifier: 18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: 18.3.1
-        version: 18.3.1(react@18.3.1)
+  packages/app/global/paths: {}
 
-  packages/@app-browser/ui:
+  packages/core/browser/ui:
     dependencies:
       '@andrao/tailwind':
         specifier: 1.2.0
@@ -463,49 +440,14 @@ importers:
         specifier: 3.23.8
         version: 3.23.8
 
-  packages/@app-global/constants: {}
-
-  packages/@app-global/paths: {}
-
-  packages/@app-server/api:
+  packages/data/server/db:
     dependencies:
-      '@acme/constants':
+      '@acme/infra-constants':
         specifier: workspace:*
-        version: link:../../@app-global/constants
-      '@acme/db':
-        specifier: workspace:*
-        version: link:../db
-      '@acme/db-api':
-        specifier: workspace:*
-        version: link:../db-api
-      '@andrao/async':
-        specifier: 1.0.0
-        version: 1.0.0
-      '@trpc/client':
-        specifier: next
-        version: 11.0.0-rc.502(@trpc/server@11.0.0-rc.502)
-      '@trpc/server':
-        specifier: next
-        version: 11.0.0-rc.502
-      superjson:
-        specifier: 2.2.1
-        version: 2.2.1
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
-    devDependencies:
-      next:
-        specifier: 14.2.11
-        version: 14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
-
-  packages/@app-server/db:
-    dependencies:
-      '@acme/constants':
-        specifier: workspace:*
-        version: link:../../@app-global/constants
+        version: link:../../../../infrastructure/infra-constants
       '@acme/paths':
         specifier: workspace:*
-        version: link:../../@app-global/paths
+        version: link:../../../app/global/paths
       '@andrao/tools':
         specifier: 1.1.0
         version: 1.1.0
@@ -544,7 +486,7 @@ importers:
         specifier: 4.16.5
         version: 4.16.5
 
-  packages/@app-server/db-api:
+  packages/data/server/db-api:
     dependencies:
       '@acme/db':
         specifier: workspace:*
@@ -558,6 +500,67 @@ importers:
       zod:
         specifier: 3.23.8
         version: 3.23.8
+
+  packages/domains/basic/browser/api-client:
+    dependencies:
+      '@acme/basic-api':
+        specifier: workspace:*
+        version: link:../../server/api
+      '@acme/paths':
+        specifier: workspace:*
+        version: link:../../../../app/global/paths
+      '@andrao/tools':
+        specifier: 1.1.0
+        version: 1.1.0
+      '@tanstack/react-query':
+        specifier: 5.51.23
+        version: 5.51.23(react@18.3.1)
+      '@trpc/client':
+        specifier: next
+        version: 11.0.0-rc.502(@trpc/server@11.0.0-rc.502)
+      '@trpc/react-query':
+        specifier: next
+        version: 11.0.0-rc.502(@tanstack/react-query@5.51.23(react@18.3.1))(@trpc/client@11.0.0-rc.502(@trpc/server@11.0.0-rc.502))(@trpc/server@11.0.0-rc.502)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@trpc/server':
+        specifier: next
+        version: 11.0.0-rc.502
+      react:
+        specifier: 18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: 18.3.1
+        version: 18.3.1(react@18.3.1)
+
+  packages/domains/basic/server/api:
+    dependencies:
+      '@acme/db':
+        specifier: workspace:*
+        version: link:../../../../data/server/db
+      '@acme/db-api':
+        specifier: workspace:*
+        version: link:../../../../data/server/db-api
+      '@acme/infra-constants':
+        specifier: workspace:*
+        version: link:../../../../../infrastructure/infra-constants
+      '@andrao/async':
+        specifier: 1.0.0
+        version: 1.0.0
+      '@trpc/client':
+        specifier: next
+        version: 11.0.0-rc.502(@trpc/server@11.0.0-rc.502)
+      '@trpc/server':
+        specifier: next
+        version: 11.0.0-rc.502
+      superjson:
+        specifier: 2.2.1
+        version: 2.2.1
+      zod:
+        specifier: 3.23.8
+        version: 3.23.8
+    devDependencies:
+      next:
+        specifier: 14.2.12
+        version: 14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
 
   tooling/actions: {}
 
@@ -645,10 +648,10 @@ importers:
     dependencies:
       '@acme/db':
         specifier: workspace:*
-        version: link:../../packages/@app-server/db
+        version: link:../../packages/data/server/db
       '@acme/db-api':
         specifier: workspace:*
-        version: link:../../packages/@app-server/db-api
+        version: link:../../packages/data/server/db-api
       '@andrao/async':
         specifier: 1.0.0
         version: 1.0.0
@@ -2039,62 +2042,62 @@ packages:
   '@neondatabase/serverless@0.9.4':
     resolution: {integrity: sha512-D0AXgJh6xkf+XTlsO7iwE2Q1w8981E1cLCPAALMU2YKtkF/1SF6BiAzYARZFYo175ON+b1RNIy9TdSFHm5nteg==}
 
-  '@next/env@14.2.11':
-    resolution: {integrity: sha512-HYsQRSIXwiNqvzzYThrBwq6RhXo3E0n8j8nQnAs8i4fCEo2Zf/3eS0IiRA8XnRg9Ha0YnpkyJZIZg1qEwemrHw==}
+  '@next/env@14.2.12':
+    resolution: {integrity: sha512-3fP29GIetdwVIfIRyLKM7KrvJaqepv+6pVodEbx0P5CaMLYBtx+7eEg8JYO5L9sveJO87z9eCReceZLi0hxO1Q==}
 
   '@next/eslint-plugin-next@14.2.11':
     resolution: {integrity: sha512-7mw+xW7Y03Ph4NTCcAzYe+vu4BNjEHZUfZayyF3Y1D9RX6c5NIe25m1grHEAkyUuaqjRxOYhnCNeglOkIqLkBA==}
 
-  '@next/swc-darwin-arm64@14.2.11':
-    resolution: {integrity: sha512-eiY9u7wEJZWp/Pga07Qy3ZmNEfALmmSS1HtsJF3y1QEyaExu7boENz11fWqDmZ3uvcyAxCMhTrA1jfVxITQW8g==}
+  '@next/swc-darwin-arm64@14.2.12':
+    resolution: {integrity: sha512-crHJ9UoinXeFbHYNok6VZqjKnd8rTd7K3Z2zpyzF1ch7vVNKmhjv/V7EHxep3ILoN8JB9AdRn/EtVVyG9AkCXw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@14.2.11':
-    resolution: {integrity: sha512-lnB0zYCld4yE0IX3ANrVMmtAbziBb7MYekcmR6iE9bujmgERl6+FK+b0MBq0pl304lYe7zO4yxJus9H/Af8jbg==}
+  '@next/swc-darwin-x64@14.2.12':
+    resolution: {integrity: sha512-JbEaGbWq18BuNBO+lCtKfxl563Uw9oy2TodnN2ioX00u7V1uzrsSUcg3Ep9ce+P0Z9es+JmsvL2/rLphz+Frcw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@14.2.11':
-    resolution: {integrity: sha512-Ulo9TZVocYmUAtzvZ7FfldtwUoQY0+9z3BiXZCLSUwU2bp7GqHA7/bqrfsArDlUb2xeGwn3ZuBbKtNK8TR0A8w==}
+  '@next/swc-linux-arm64-gnu@14.2.12':
+    resolution: {integrity: sha512-qBy7OiXOqZrdp88QEl2H4fWalMGnSCrr1agT/AVDndlyw2YJQA89f3ttR/AkEIP9EkBXXeGl6cC72/EZT5r6rw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@14.2.11':
-    resolution: {integrity: sha512-fH377DnKGyUnkWlmUpFF1T90m0dADBfK11dF8sOQkiELF9M+YwDRCGe8ZyDzvQcUd20Rr5U7vpZRrAxKwd3Rzg==}
+  '@next/swc-linux-arm64-musl@14.2.12':
+    resolution: {integrity: sha512-EfD9L7o9biaQxjwP1uWXnk3vYZi64NVcKUN83hpVkKocB7ogJfyH2r7o1pPnMtir6gHZiGCeHKagJ0yrNSLNHw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@14.2.11':
-    resolution: {integrity: sha512-a0TH4ZZp4NS0LgXP/488kgvWelNpwfgGTUCDXVhPGH6pInb7yIYNgM4kmNWOxBFt+TIuOH6Pi9NnGG4XWFUyXQ==}
+  '@next/swc-linux-x64-gnu@14.2.12':
+    resolution: {integrity: sha512-iQ+n2pxklJew9IpE47hE/VgjmljlHqtcD5UhZVeHICTPbLyrgPehaKf2wLRNjYH75udroBNCgrSSVSVpAbNoYw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@14.2.11':
-    resolution: {integrity: sha512-DYYZcO4Uir2gZxA4D2JcOAKVs8ZxbOFYPpXSVIgeoQbREbeEHxysVsg3nY4FrQy51e5opxt5mOHl/LzIyZBoKA==}
+  '@next/swc-linux-x64-musl@14.2.12':
+    resolution: {integrity: sha512-rFkUkNwcQ0ODn7cxvcVdpHlcOpYxMeyMfkJuzaT74xjAa5v4fxP4xDk5OoYmPi8QNLDs3UgZPMSBmpBuv9zKWA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@14.2.11':
-    resolution: {integrity: sha512-PwqHeKG3/kKfPpM6of1B9UJ+Er6ySUy59PeFu0Un0LBzJTRKKAg2V6J60Yqzp99m55mLa+YTbU6xj61ImTv9mg==}
+  '@next/swc-win32-arm64-msvc@14.2.12':
+    resolution: {integrity: sha512-PQFYUvwtHs/u0K85SG4sAdDXYIPXpETf9mcEjWc0R4JmjgMKSDwIU/qfZdavtP6MPNiMjuKGXHCtyhR/M5zo8g==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-ia32-msvc@14.2.11':
-    resolution: {integrity: sha512-0U7PWMnOYIvM74GY6rbH6w7v+vNPDVH1gUhlwHpfInJnNe5LkmUZqhp7FNWeNa5wbVgRcRi1F1cyxp4dmeLLvA==}
+  '@next/swc-win32-ia32-msvc@14.2.12':
+    resolution: {integrity: sha512-FAj2hMlcbeCV546eU2tEv41dcJb4NeqFlSXU/xL/0ehXywHnNpaYajOUvn3P8wru5WyQe6cTZ8fvckj/2XN4Vw==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@14.2.11':
-    resolution: {integrity: sha512-gQpS7mcgovWoaTG1FbS5/ojF7CGfql1Q0ZLsMrhcsi2Sr9HEqsUZ70MPJyaYBXbk6iEAP7UXMD9HC8KY1qNwvA==}
+  '@next/swc-win32-x64-msvc@14.2.12':
+    resolution: {integrity: sha512-yu8QvV53sBzoIVRHsxCHqeuS8jYq6Lrmdh0briivuh+Brsp6xjg80MAozUsBTAV9KNmY08KlX0KYTWz1lbPzEg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -4385,6 +4388,9 @@ packages:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
 
+  cloudfront@0.4.1:
+    resolution: {integrity: sha512-KqjR4WQDmWjdZJzElBB0WfTdcfdrs4ECCyCG9psGJt7tkizaVy1yWXXIrJYNF5fOvO/wLiq22QZwpJWIxVP2mw==}
+
   clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
@@ -4555,6 +4561,9 @@ packages:
   data-view-byte-offset@1.0.0:
     resolution: {integrity: sha512-t/Ygsytq+R995EJ5PZlD4Cu56sWa8InXySaViRzw9apusqsOO2bQP+SbYzAhR0pFKoB+43lYy8rWban9JSuXnA==}
     engines: {node: '>= 0.4'}
+
+  data2xml@0.9.0:
+    resolution: {integrity: sha512-ib3b10vCIHDMCdggydsCZUP/ulS8C2H0RqFkVcOb4FKk7xyGSDmfhDHwPC5U1O+6NbMYyWMlzd6Ie6VeWZpWUA==}
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -6829,8 +6838,8 @@ packages:
       react: ^16.8 || ^17 || ^18
       react-dom: ^16.8 || ^17 || ^18
 
-  next@14.2.11:
-    resolution: {integrity: sha512-8MDFqHBhdmR2wdfaWc8+lW3A/hppFe1ggQ9vgIu/g2/2QEMYJrPoQP6b+VNk56gIug/bStysAmrpUKtj3XN8Bw==}
+  next@14.2.12:
+    resolution: {integrity: sha512-cDOtUSIeoOvt1skKNihdExWMTybx3exnvbFbb9ecZDIxlvIbREQzt9A5Km3Zn3PfU+IFjyYGsHS+lN9VInAGKA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -7850,6 +7859,9 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
+  sax@0.5.8:
+    resolution: {integrity: sha512-c0YL9VcSfcdH3F1Qij9qpYJFpKFKMXNOkLWFssBL3RuF7ZS8oZhllR2rWlCRjDTJsfq3R6wbSsaRU6o0rkEdNw==}
+
   sax@1.2.1:
     resolution: {integrity: sha512-8I2a3LovHTOpm7NV5yOyO8IHqgVsfK4+UuySrXU8YXkSRX7k6hCV9b3HrkKCr3nMpgj+0bmocaJJWpvp1oc7ZA==}
 
@@ -8821,6 +8833,9 @@ packages:
     resolution: {integrity: sha512-+QU2zd6OTD8XWIJCbffaiQeH9U73qIqafo1x6V1snCWYGJf6cVE0cDR4D8xRzcEnfI21IFrUPzPGtcPf8AC+Rw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  xml2js@0.2.8:
+    resolution: {integrity: sha512-ZHZBIAO55GHCn2jBYByVPHvHS+o3j8/a/qmpEe6kxO3cTnTCWC3Htq9RYJ5G4XMwMMClD2QkXA9SNdPadLyn3Q==}
+
   xml2js@0.6.2:
     resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
     engines: {node: '>=4.0.0'}
@@ -9700,14 +9715,14 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@clerk/nextjs@4.29.10(next@14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@clerk/nextjs@4.29.10(next@14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@clerk/backend': 0.38.4(react@18.3.1)
       '@clerk/clerk-react': 4.30.8(react@18.3.1)
       '@clerk/clerk-sdk-node': 4.13.12(react@18.3.1)
       '@clerk/shared': 1.4.0(react@18.3.1)
       '@clerk/types': 3.63.0
-      next: 14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
+      next: 14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
       path-to-regexp: 6.2.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -10484,37 +10499,37 @@ snapshots:
     dependencies:
       '@types/pg': 8.11.6
 
-  '@next/env@14.2.11': {}
+  '@next/env@14.2.12': {}
 
   '@next/eslint-plugin-next@14.2.11':
     dependencies:
       glob: 10.3.10
 
-  '@next/swc-darwin-arm64@14.2.11':
+  '@next/swc-darwin-arm64@14.2.12':
     optional: true
 
-  '@next/swc-darwin-x64@14.2.11':
+  '@next/swc-darwin-x64@14.2.12':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@14.2.11':
+  '@next/swc-linux-arm64-gnu@14.2.12':
     optional: true
 
-  '@next/swc-linux-arm64-musl@14.2.11':
+  '@next/swc-linux-arm64-musl@14.2.12':
     optional: true
 
-  '@next/swc-linux-x64-gnu@14.2.11':
+  '@next/swc-linux-x64-gnu@14.2.12':
     optional: true
 
-  '@next/swc-linux-x64-musl@14.2.11':
+  '@next/swc-linux-x64-musl@14.2.12':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@14.2.11':
+  '@next/swc-win32-arm64-msvc@14.2.12':
     optional: true
 
-  '@next/swc-win32-ia32-msvc@14.2.11':
+  '@next/swc-win32-ia32-msvc@14.2.12':
     optional: true
 
-  '@next/swc-win32-x64-msvc@14.2.11':
+  '@next/swc-win32-x64-msvc@14.2.12':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -13281,6 +13296,11 @@ snapshots:
 
   clone@2.1.2: {}
 
+  cloudfront@0.4.1:
+    dependencies:
+      data2xml: 0.9.0
+      xml2js: 0.2.8
+
   clsx@2.0.0: {}
 
   clsx@2.1.1: {}
@@ -13476,6 +13496,8 @@ snapshots:
       call-bind: 1.0.7
       es-errors: 1.3.0
       is-data-view: 1.0.1
+
+  data2xml@0.9.0: {}
 
   debug@2.6.9:
     dependencies:
@@ -14526,9 +14548,9 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  geist@1.3.0(next@14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)):
+  geist@1.3.0(next@14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)):
     dependencies:
-      next: 14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
+      next: 14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
 
   generate-function@2.3.1:
     dependencies:
@@ -16272,9 +16294,9 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  next@14.2.11(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8):
+  next@14.2.12(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(@playwright/test@1.46.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8):
     dependencies:
-      '@next/env': 14.2.11
+      '@next/env': 14.2.12
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001660
@@ -16284,15 +16306,15 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       styled-jsx: 5.1.1(@babel/core@7.25.2)(react@18.3.1)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.11
-      '@next/swc-darwin-x64': 14.2.11
-      '@next/swc-linux-arm64-gnu': 14.2.11
-      '@next/swc-linux-arm64-musl': 14.2.11
-      '@next/swc-linux-x64-gnu': 14.2.11
-      '@next/swc-linux-x64-musl': 14.2.11
-      '@next/swc-win32-arm64-msvc': 14.2.11
-      '@next/swc-win32-ia32-msvc': 14.2.11
-      '@next/swc-win32-x64-msvc': 14.2.11
+      '@next/swc-darwin-arm64': 14.2.12
+      '@next/swc-darwin-x64': 14.2.12
+      '@next/swc-linux-arm64-gnu': 14.2.12
+      '@next/swc-linux-arm64-musl': 14.2.12
+      '@next/swc-linux-x64-gnu': 14.2.12
+      '@next/swc-linux-x64-musl': 14.2.12
+      '@next/swc-win32-arm64-msvc': 14.2.12
+      '@next/swc-win32-ia32-msvc': 14.2.12
+      '@next/swc-win32-x64-msvc': 14.2.12
       '@opentelemetry/api': 1.9.0
       '@playwright/test': 1.46.1
       sass: 1.77.8
@@ -17398,6 +17420,8 @@ snapshots:
       chokidar: 3.6.0
       immutable: 4.3.7
       source-map-js: 1.2.1
+
+  sax@0.5.8: {}
 
   sax@1.2.1: {}
 
@@ -18513,6 +18537,10 @@ snapshots:
     dependencies:
       imurmurhash: 0.1.4
       signal-exit: 4.1.0
+
+  xml2js@0.2.8:
+    dependencies:
+      sax: 0.5.8
 
   xml2js@0.6.2:
     dependencies:

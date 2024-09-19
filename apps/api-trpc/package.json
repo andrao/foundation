@@ -1,5 +1,5 @@
 {
-    "name": "@acme/api-trpc",
+    "name": "@acme/basic-api-trpc",
     "version": "1.0.0",
     "private": true,
     "type": "module",
@@ -16,9 +16,9 @@
         "with-env": "dotenv -e ../../.env --"
     },
     "dependencies": {
-        "@acme/api": "workspace:*",
-        "@acme/constants": "workspace:*",
+        "@acme/basic-api": "workspace:*",
         "@acme/db": "workspace:*",
+        "@acme/infra-constants": "workspace:*",
         "@acme/paths": "workspace:*",
         "@t3-oss/env-nextjs": "0.11.1",
         "@trpc/server": "next",

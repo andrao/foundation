@@ -26,8 +26,8 @@
         "root": true
     },
     "dependencies": {
-        "@acme/api": "workspace:*",
-        "@acme/constants": "workspace:*",
+        "@acme/basic-api": "workspace:*",
+        "@acme/infra-constants": "workspace:*",
         "@acme/paths": "workspace:*",
         "@acme/ui": "workspace:*",
         "@andrao/tailwind": "1.2.0",
@@ -36,7 +36,7 @@
         "@trpc/server": "next",
         "framer-motion": "11.5.4",
         "geist": "1.3.0",
-        "next": "14.2.11",
+        "next": "14.2.12",
         "next-themes": "0.3.0",
         "react": "18.3.1",
         "react-dom": "18.3.1",
