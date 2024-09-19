@@ -1,0 +1,22 @@
+---
+import { getMerchantHref } from '~/util/getMerchantHref';
+
+interface Props {
+    merchant: {
+        name: string;
+        merchant_id: number;
+    };
+}
+
+const { name, merchant_id } = Astro.props.merchant;
+const href = getMerchantHref({ merchant_id });
+---
+
+<h1 class='mb-8 text-center'>
+    <a
+        href={href}
+        class='bg-300% bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text bg-center text-6xl font-bold leading-normal text-transparent hover:underline'
+    >
+        {name}
+    </a>
+</h1>

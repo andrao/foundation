@@ -23,7 +23,7 @@ const services = await getMerchantServices({
             <Card
                 href={getServiceHref({ merchant_id, service_name: service.name })}
                 title={service.name}
-                body={service.description ?? `A service that we do.`}
+                body={service.description ?? `We do ${service.name.toLowerCase()}.`}
             />
         ))
     }

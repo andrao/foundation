@@ -1,0 +1,15 @@
+---
+interface Props {
+    service: {
+        name: string;
+    };
+}
+
+const { service } = Astro.props;
+---
+
+<h2
+    class='bg-300% mb-8 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text bg-center text-center text-4xl font-semibold text-transparent'
+>
+    {service.name}
+</h2>

@@ -1,11 +1,10 @@
 ---
 import { getAllMerchantsWithServices } from '@acme/db-api';
+import MerchantTitle from '~/components/MerchantTitle.astro';
+import ServiceTitle from '~/components/ServiceTitle.astro';
 import { ctx } from '~/ctx';
 import Layout from '~/layouts/Layout.astro';
 import { formatServiceName } from '~/util/formatServiceName';
-
-// Need to explicitly define props type to avoid lint error
-type Props = Awaited<ReturnType<typeof getStaticPaths>>[number]['props'];
 
 /**
  * Get path parameters
@@ -29,6 +28,9 @@ export async function getStaticPaths() {
         }));
 }
 
+// Need to explicitly define props type to avoid lint error
+type Props = Awaited<ReturnType<typeof getStaticPaths>>[number]['props'];
+
 /**
  * Render page
  */
@@ -36,16 +38,8 @@ const { merchant, service } = Astro.props;
 ---
 
 <Layout title={merchant.name}>
-    <main class='mx-auto w-full max-w-3xl p-4 text-xl leading-relaxed text-white'>
-        <h1
-            class='bg-300% mb-8 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text bg-center text-center text-6xl font-bold leading-normal text-transparent'
-        >
-            {merchant.name}
-        </h1>
-        <h2
-            class='bg-300% mb-8 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text bg-center text-center text-4xl font-semibold text-transparent'
-        >
-            {service.name}
-        </h2>
+    <main class='mx-auto w-full max-w-3xl p-4 text-xl text-white'>
+        <MerchantTitle merchant={merchant} />
+        <ServiceTitle service={service} />
     </main>
 </Layout>

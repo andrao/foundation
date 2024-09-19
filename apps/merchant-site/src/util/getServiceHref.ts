@@ -1,5 +1,7 @@
+import { uriJoin } from '@andrao/tools/uriJoin';
 import { env } from '../env-vars';
 import { formatServiceName } from './formatServiceName';
+import { getMerchantHref } from './getMerchantHref';
 
 /**
  * @function getServiceHref
@@ -13,7 +15,11 @@ export function getServiceHref({
     merchant_id: number;
     service_name: string;
 }) {
-    const service = `/services/${formatServiceName(service_name)}`;
+    const merchant_path = getMerchantHref({ merchant_id });
+    const service_path = `services/${formatServiceName(service_name)}`;
 
-    return env.IS_BUILD ? service : `/merchants/${merchant_id}${service}`;
+    // uriJoin() removes leading slash
+    const href = env.IS_BUILD ? uriJoin(service_path) : uriJoin(merchant_path, service_path);
+
+    return `/${href}`;
 }
