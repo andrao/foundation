@@ -8,7 +8,10 @@ import { z } from 'zod';
  * @see https://vercel.com/docs/projects/environment-variables/system-environment-variables for default Vercel env vars
  */
 export const env = createEnv({
-    server: {},
+    server: {
+        MERCHANT_ID: z.string().optional(),
+    },
+
     client: {},
 
     /**
@@ -16,6 +19,7 @@ export const env = createEnv({
      * - Node defaults, environment
      */
     shared: {
+        IS_BUILD: z.boolean(),
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
         PORT: z.coerce.number().default(PORTS.nextjs),
         VERCEL_ENV: z.enum(['development', 'preview', 'production']).default('development'),
@@ -26,6 +30,8 @@ export const env = createEnv({
      * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
      */
     runtimeEnv: {
+        IS_BUILD: process.env.NODE_ENV === 'production',
+        MERCHANT_ID: process.env.MERCHANT_ID,
         NODE_ENV: process.env.NODE_ENV,
         PORT: process.env.PORT,
         VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL_ENV,

@@ -1,8 +1,19 @@
-import config, { type Config } from '@andrao/tailwind';
+import type { Config } from 'tailwindcss';
 
-export default {
-    // We need to append the path to the UI package to the content array so that
-    // those classes are included correctly.
-    content: [...config.content, '../../packages/@app-browser/**/*.{ts,tsx}'],
-    presets: [config],
-} satisfies Config;
+const config: Config = {
+    content: [
+        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    ],
+    theme: {
+        extend: {
+            colors: {
+                background: 'var(--background)',
+                foreground: 'var(--foreground)',
+            },
+        },
+    },
+    plugins: [],
+};
+export default config;
