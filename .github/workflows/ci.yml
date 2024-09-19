@@ -61,6 +61,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: ./tooling/actions/install-dependencies
+              with:
+                  ignore-scripts: true
             - name: Format
               run: pnpm format
 
@@ -70,6 +72,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: ./tooling/actions/install-dependencies
+              with:
+                  ignore-scripts: true
             - name: Lint
               run: pnpm lint
 
@@ -79,6 +83,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: ./tooling/actions/install-dependencies
+              with:
+                  ignore-scripts: true
             - name: Test
               run: pnpm test:ci
 
@@ -88,5 +94,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: ./tooling/actions/install-dependencies
+              with:
+                  ignore-scripts: true
             - name: Typecheck
               run: pnpm typecheck
