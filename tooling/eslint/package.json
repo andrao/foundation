@@ -1,6 +1,7 @@
 {
     "name": "@acme/eslint",
     "version": "0.1.0",
+    "private": true,
     "files": [
         "./lib/base.js",
         "./lib/nextjs.js",

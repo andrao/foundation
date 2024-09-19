@@ -1,5 +1,5 @@
 {
-    "name": "@acme/merchant-site-static",
+    "name": "@apps/merchant-site-static",
     "version": "1.0.0",
     "private": true,
     "type": "module",

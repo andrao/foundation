@@ -1,13 +1,14 @@
 {
-    "name": "merchant-site",
+    "name": "@apps/merchant-site",
     "version": "0.1.0",
+    "private": true,
     "module": "dist/index.js",
     "scripts": {
         "astro": "astro",
-        "build": "astro check && IS_ASTRO_BUILD=1 astro build",
+        "build": "astro check && IS_STATIC_BUILD=1 astro build",
         "clean": "git clean -xdf .next .turbo node_modules",
         "deploy": "docker compose -f ../../docker-compose.yml run --rm --build merchant-site",
-        "dev": "IS_ASTRO_BUILD=1 astro dev",
+        "dev": "astro dev",
         "format": "prettier --check . --ignore-path ../../.prettierignore",
         "jest": "pnpm run -C ../.. jest",
         "jest:i": "RUN_JEST_INTEGRATION_TESTS=1 pnpm run jest",

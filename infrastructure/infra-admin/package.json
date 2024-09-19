@@ -1,5 +1,6 @@
 {
     "name": "@acme/infra-admin",
+    "private": true,
     "type": "module",
     "main": "index.ts",
     "scripts": {
