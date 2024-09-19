@@ -41,10 +41,10 @@ export async function dbx<T>(
 ): Promise<T> {
     /**
      * Determine client to use
-     * @tmp env.IS_ASTRO_BUILD - what to do? override on CI?
+     * @tmp env.IS_STATIC_BUILD - what to do? override on CI?
      */
     const client_to_use =
-        env.IS_ASTRO_BUILD || env.USE_LOCAL_MYSQL
+        env.IS_STATIC_BUILD || env.USE_LOCAL_MYSQL
             ? 'local'
             : typeof input === 'string'
               ? input

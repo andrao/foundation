@@ -2,7 +2,7 @@ import { PORTS } from '@acme/paths/ports.js';
 import type { Config as DrizzleConfig } from 'drizzle-kit';
 import { drizzle, type MySql2Database } from 'drizzle-orm/mysql2';
 import mysql from 'mysql2/promise';
-import { schema } from '../schema/index.js';
+import { schema } from '../schema';
 
 /**
  * @interface ILocalMySqlClient

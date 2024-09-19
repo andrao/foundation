@@ -10,7 +10,7 @@ export const env = createEnv({
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 
         // Local dev
-        IS_ASTRO_BUILD: z.string().optional(),
+        IS_STATIC_BUILD: z.string().optional(),
         USE_LOCAL_MYSQL: z.string().optional(),
 
         // Set in .env
@@ -26,7 +26,7 @@ export const env = createEnv({
      * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
      */
     runtimeEnv: {
-        IS_ASTRO_BUILD: process.env.IS_ASTRO_BUILD,
+        IS_STATIC_BUILD: process.env.IS_STATIC_BUILD,
         NODE_ENV: process.env.NODE_ENV,
         PLANETSCALE_HOST: process.env.PLANETSCALE_HOST,
         PLANETSCALE_USERNAME: process.env.PLANETSCALE_USERNAME,
