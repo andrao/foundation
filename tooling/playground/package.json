@@ -19,12 +19,11 @@
         "@acme/db": "workspace:*",
         "@acme/db-api": "workspace:*",
         "@andrao/async": "1.0.0",
-        "@andrao/llm-client": "*",
         "@t3-oss/env-nextjs": "0.11.1",
         "chalk": "4.1.2",
         "zod": "3.23.8"
     },
     "devDependencies": {
-        "tsx": "4.16.5"
+        "tsx": "4.19.1"
     }
 }

@@ -20,14 +20,14 @@
     },
     "dependencies": {
         "@acme/infra-constants": "workspace:*",
-        "@pulumi/aws": "6.51.0",
-        "@pulumi/aws-native": "0.121.0",
-        "@pulumi/awsx": "2.14.0",
-        "@pulumi/github": "6.2.3",
-        "@pulumi/pulumi": "3.130.0",
+        "@pulumi/aws": "6.52.0",
+        "@pulumi/aws-native": "0.123.0",
+        "@pulumi/awsx": "2.15.0",
+        "@pulumi/github": "6.3.0",
+        "@pulumi/pulumi": "3.133.0",
         "cloudfront": "0.4.1"
     },
     "devDependencies": {
-        "tsx": "4.16.5"
+        "tsx": "4.19.1"
     }
 }

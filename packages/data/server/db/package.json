@@ -28,18 +28,18 @@
         "@acme/infra-constants": "workspace:*",
         "@acme/paths": "workspace:*",
         "@andrao/tools": "1.1.0",
-        "@neondatabase/serverless": "0.9.4",
+        "@neondatabase/serverless": "0.9.5",
         "@planetscale/database": "1.19.0",
         "@t3-oss/env-nextjs": "0.11.1",
         "drizzle-orm": "0.33.0",
         "drizzle-zod": "0.5.1",
-        "mysql2": "3.11.0",
+        "mysql2": "3.11.3",
         "zod": "3.23.8"
     },
     "devDependencies": {
         "dotenv-cli": "7.4.2",
         "drizzle-kit": "0.24.2",
-        "pg": "8.12.0",
-        "tsx": "4.16.5"
+        "pg": "8.13.0",
+        "tsx": "4.19.1"
     }
 }

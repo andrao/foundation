@@ -21,7 +21,7 @@
         "@acme/basic-api": "workspace:*",
         "@acme/paths": "workspace:*",
         "@andrao/tools": "1.1.0",
-        "@tanstack/react-query": "5.51.23",
+        "@tanstack/react-query": "5.56.2",
         "@trpc/client": "next",
         "@trpc/react-query": "next",
         "@trpc/server": "next",
